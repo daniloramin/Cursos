@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>JavaScript</title>
+
+		<!-- poderia dar um document.getElementById('cores').style.background = 'yellow' como outra forma, fazendo com que não precisasse usar o style -->
+		<style>
+			
+			.classeAmarelo {
+				background-color: yellow;
+			}
+
+			.classeVermelho {
+				background-color: red;
+			}
+
+			.classeVerde {
+				background-color: green;
+			}
+
+		</style>
+
+
+		<script>
+			function modificaAmarelo() {
+				document.getElementById('cores').className = 'classeAmarelo'
+			}
+
+			function recuperaValor() {
+				var caracter = document.getElementById('cores').value
+				if (caracter.length < 3) {
+					document.getElementById('cores').className = 'classeVermelho'
+				} else {
+					document.getElementById('cores').className = 'classeVerde'
+				}
+			}
+		</script>
+		
+	</head>
+	<body>
+		
+		<input id="cores" type="text" onfocus="modificaAmarelo()" onblur="recuperaValor()">
+
+	</body>
+</html>

@@ -1,0 +1,65 @@
+Sobre git em rede local.
+	
+	Imagine uma márquina de rede local que é um servidor de todos os repositórios e projetos que 
+	uma equipe está trabalhando no desenvolvimento. 
+	Será aprendido a como buscar as informações nesse servidor e a como mandar essas informações 
+	de volta quando o trabalho estiver concluído.
+	
+	
+	Quando quiser iniciar um repositório que vai ser disponibilizado para outras máquinas na 
+	rede local, é preciso utilizar o comando "git init --bare" e não somente o "git init".
+	
+	Foi criado então a pasta cliente1 como repositório. 
+	Com isso, cada estação de trabalho que for trabalhar no projeto do cliente1, na 
+	primeira vez que for acessar o repositório será preciso criar um clone. Então, o ideal é que 
+	a primeira pessoa que vai adicionar a estrutura básica de pastas e de arquivos padrão do 
+	projeto, faça isso antes e envie esses dados de volta para o servidor para que as outras pessoas 
+	comecem a trabalhar no desenvolvimento. 
+	Para fazer isso(clonar o repositório), basta utilizar o comando "git clone file:////" e logo 
+	após o nome do servidor. Caso queira mudar o nome da pasta a ser criar, basta colocar outro 
+	nome na frente do nome do servidor. 
+	Ex sintaxe: 
+	git clone file:////vmseven/projetos/cliente1 prjrede1
+	
+	É obrigatório utilizar quatro barras, se não, não vai funcionar.
+	
+	O commit feito foi apenas localmente, não enviando de volta para o servidor. Para mardar 
+	esses arquivos para o servidor, será dado um "push" nesses arquivos. Para fazer isso, é 
+	necessário saber o nome do seu servidor remoto. Para saber o nome, basta digitar o 
+	comando "git remote". O retorno será o nome do servidor remoto. 
+	Ex sintaxe: 
+	git remote
+	
+	Por padrão, quando se faz um clone, o nome será "origin". Esse é o padrão do git.
+	
+	
+	Para enviar o projeto para o servidor, é preciso saber o nome do remote e o branch em que se 
+	encontra. Suponhamos que esteja no branch "master" e no remote "origin". Então, o código 
+	a ser digitado será "git push nomeRemote nomeBranch". 
+	Ex sintaxe: 
+	git push origin master
+	
+	Para ver os dados que foram passados para o servidor, não será muito fácil, caso tente ver 
+	pelas pastas no servidor. Para isso, é utilizado o git. 
+	Foi feito então, um novo clone do servidor. Nesse clone terá todas as pastas que foram enviadas 
+	ao servidor, podendo assim, ver facilmente toda a base de pastas do projeto que havia sido 
+	enviada.
+	
+	Basicamente, o processo é pegar os dados com o clone e enviar de volta com o push.
+	
+	Imagine que tenha feito alterações no projeto, porém outra pessoa que trabalha no projeto 
+	também está fazendo alterações nele. Ao avisar que foi feito alterações, essa pessoa precisará 
+	pegar esses dados alterados para atualizar o clone do projeto que está trabalhando, para então, 
+	quando ela também for enviar os dados, não haver nenhum conflito. Para isso, será utilizado 
+	o comando "git pull nomeRemote nomeBranch".
+	Ex: sintaxe: 
+	git pull origin master
+	
+	Ao der Enter, ele irá no servidor e trará as alterações para o clone que a pessoa estiver 
+	trabalhando.
+	Têm vezes que não será interessante fazer isso, pois o git pull acaba fazendo um marge nos 
+	arquivos. Para quando não quiser fazer isso, é necessário ter um branch separado e fazer um 
+	"fetch", fazendo em vez de "git pull nomeRemote nomeBranch" um 
+	"git fetch nomeRemote nomeBranchQueForUtilizar".
+	Ex sintaxe: 
+	git fetch origin remotoAtualizacao

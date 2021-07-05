@@ -1,0 +1,63 @@
+Funções construtoras são a base para a criação de objetos em javascript.
+
+-------- Criando objetos --------
+Utiliza-se de uma função que possui um escopo e que será recuperada dentro do código a partir do 
+operador new. O seu nome deve começar com Letra maiúscula e seu valor atribuído será uma função, ou 
+seja, ela será contruída, será instanciada.
+Os operadores são criados utilizando o operador this. Os métodos serão atributos que recebem funções.
+Sintaxe: 
+let Carro = function () {
+    this.cor = 'Amarelo';
+    this.modelo = 'Chevette';
+    this.velocidadeAtual = 0;
+    this.velocidadeMaxima = 180;
+    this.acelerar = function () {
+	let velocidade = this.getVelocidadeAtual() + 10;
+	this.setVelocidadeAtual(velocidade);
+    };
+    this.getVelocidadeAtual = function () {
+	return this.velocidadeAtual;
+    };
+    this.setVelocidadeAtual = function (velocidadeAtual) {
+	this.velocidadeAtual = velocidadeAtual;
+    };
+}
+let carro = new Carro();
+console.log(`A velocidade atual é: ${carro.getVelocidadeAtual()}`);
+carro.acelerar();
+console.log(`A velocidade atual é: ${carro.getVelocidadeAtual()}`);
+
+
+
+-------- Encapsulando atributos e métodos --------
+O encapsulamento em funções construtoras existe utilizando variáveis do escopo da função, sem utilizar 
+o operador this, fazendo com que sejam variáveis do contexto da função não seja possível acessá-las.
+Essas variáveis serão os atributos e métodos privados.
+Sintaxe: 
+let Carro = function () {
+    this.cor = 'Amarelo';
+    this.modelo = 'Chevette';
+    this.velocidadeAtual = 0;
+    var velocidadeMaxima = 180;  // atributo privado
+    this.acelerar = function () {
+	let velocidade = this.getVelocidadeAtual() + 10;
+	if (velocidade > velocidadeMaxima) {
+	    velocidade = velocidadeMaxima;
+	}
+	this.setVelocidadeAtual(velocidade);
+    };
+    this.getVelocidadeAtual = function () {
+	return this.velocidadeAtual;
+    };
+    this.setVelocidadeAtual = function (velocidadeAtual) {
+	this.velocidadeAtual = velocidadeAtual;
+    };
+}
+let carro = new Carro();
+
+
+
+
+
+
+

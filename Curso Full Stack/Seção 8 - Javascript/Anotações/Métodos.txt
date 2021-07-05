@@ -1,0 +1,13 @@
+document.getElementeById('nomeDoId').value = 'valor colocado dentro de um input por exemplo'
+Foi feito .value mas pode ser outras coisas como .class.
+É responsável por acessar o elemento pelo id e fazer mudanças nele
+
+document.write()
+Serve para escrever textos e incluir elementros(como tags html) dentro da página.
+
+console.log()
+Serve para exibir valores no console.
+Muito usado em processo de debug. 
+
+var x = 10;
+x.toString(); irá transformar o número 10 em uma string 10;

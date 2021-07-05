@@ -1,0 +1,112 @@
+-------- Paradigma de Orientação a Objetos --------
+Existem 4 pilares da orientação a objetos:
+A abstração.
+O encapsulamento.
+A herança.
+O polimorfismo.
+
+
+---- Encapsulamento ----
+Encapsula o objeto para torna-lo seguro, ou seja, o objeto dirá o que dentro dele está disponível para 
+o sistema. Se um método ou atributo forém privados, só será possível acessá-los pelo próprio objeto. 
+Olhando para reutilização, o encapsulamento permite a partir da visibilidade, que métodos e atributos 
+sejam herdados por outros objetos(comportamento conhecido como herança).
+
+Existem o conceito de encapsulamento, porém, o javascript na versão ES6 ainda não suporta os operadores 
+de visibilidade(private, protected, public). Para fazer esse princípio ser suportado dentro da aplicação, 
+é utilizado uma forma de se escrever o código que indique a intenção, bastando colocar um _ antes 
+do nome do atributo. 
+Sintaxe: 
+class Tv {
+    constructor () {
+        this._relacaoCanais = Array(2, 4, 5, 7, 10);
+	this._canalAtivo = 5;
+	this._volume = 5;
+    }
+}
+let tv = new Tv();
+
+Isso não vai impedir do atributo ser acessado com "x._volume" por exemplo. Porém, quando ver que um 
+atributo ou está iniciando por _ basta apenas não acessá-lo diretamente, mas sim por um método get.
+
+
+-- Métodos getters e setters --
+Esses métodos são interessantes para dar segurança no uso dos atributos. Podendo fazer tratativas dentro 
+dos métodos getters ou setters. Um exemplo é fazer um if dentro de um método setter para saber se 
+deve ou não mudar o valor de um atributo.
+
+Um método getter serve para retornar um atributo do objeto.
+Um método getter é feito com o operador get antes do seu nome. Ele será chamado sem (), pois o 
+javascript sabe que ele tem que procurar por uma função get com esse nome. 
+Sintaxe: 
+class Tv {
+    constructor () {
+        this._relacaoCanais = Array(2, 4, 5, 7, 10);
+	this._canalAtivo = 5;
+	this._volume = 5;
+    }
+    get canalAtivo () {
+        return this._canalAtivo;
+    }
+}
+let tv = new Tv();
+console.log(tv.canalAtivo);
+
+Repare que a função chamada dentro de console.log não tem parenteses em seu final.
+class Tv {
+    constructor () {
+        this._relacaoCanais = Array(2, 4, 5, 7, 10);
+	this._canalAtivo = 5;
+	this._volume = 5;
+    }
+    get canalAtivo () {
+        return this._canalAtivo;
+    }
+    set canalAtivo (canal) {
+	this._canalAtivo = canal;
+    }
+}
+let tv = new Tv();
+tv.canalAtivo = 7;    Perceba que a chamada do método está recebendo um número.
+console.log(tv.canalAtivo);
+
+
+Um setter serve para setar um valor de um atributo. É utilizado o operador set.
+Sintaxe:
+
+
+
+O javascript entende lê os getters e setters como pseudo variáveis. Caso a chamada da pseudo variável 
+não receba nenhum valor, o javascript irá entender que se trata de um get. Caso ela receba um valor, 
+ele irá entender que se trata de um set. Tanto o get quanto o set podem ter o mesmo nome, porém com 
+essa diferenciação na chamada, o javascript consegue saber se é um get ou um set.
+
+
+Exemplo de estrutura de segurança dentro de um setter:
+class Tv {
+    constructor () {
+        this._relacaoCanais = Array(2, 4, 5, 7, 10);
+	this._canalAtivo = 5;
+	this._volume = 5;
+    }
+    get canalAtivo () {
+        return this._canalAtivo;
+    }
+    set canalAtivo (canal) {
+	let x = _canalAtivo.indexOf(canal); indexOf retorna o índice do valor no array ou -1 se n existir
+	if (x !== -1) {
+	    this._canalAtivo = canal;
+	}
+    }
+}
+let tv = new Tv();
+tv.canalAtivo = 7;  
+console.log(tv.canalAtivo);
+
+Dentro do método set foi criada uma verificação para ver se o canal a ser mudado existe ou não dentro 
+do array de canais da tv.
+
+
+
+
+

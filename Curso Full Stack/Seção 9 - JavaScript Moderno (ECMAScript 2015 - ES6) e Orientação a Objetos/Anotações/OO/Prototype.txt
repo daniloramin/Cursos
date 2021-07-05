@@ -1,0 +1,57 @@
+-------- Introdução --------
+Todos os objetos em javascript descendem de Object, tendo por trás disso tudo um conceito chamado 
+prototype. 
+
+Prototype nada mais é do que um modelo, um padrão, primeiro tipo, exemplar de alguma coisa. 
+
+Caso criar um objeto e olhar seus atributos no console do navegador, verá que os objetos têm um atributo 
+de nome __proto__. Isso quer dizer que o objeto criado descende de Object. 
+Object não é um objeto, mas sim uma função. Object tem seus próprios atributos e métodos.
+
+
+
+-------- Herança --------
+Para aplicar herança de um objeto a outro, basta configurar para onde o proto irá apontar. 
+Sintaxe: 
+let animal: {attr1: 'a'};
+let vertebrado: {__proto__:animal, attr2: 'b'}; // o proto está apontando para o objeto "animal".
+let ave: {__proto__: vertebrado, attr3: 'c'};  // o proto está apontando para o objeto "vertebrado".
+
+console.log(ave.attr3);
+console.log(ave.attr2);  // mostra o atributo declarado dentro de "vertebrado", pois ave herdou dele.
+console.log(ave.attr1);  // mostra o atributo declarado dentro de "animal", pois ave herdou dele.
+
+
+Pode haver sobreprosição(também conhecida como sombreamento) de atributos, retornando o atributo do 
+objeto filho, ou seja, a primeira informação encontrada. 
+Exemplo: 
+let animal: {attr1: 'a'};
+let vertebrado: {__proto__:animal, attr2: 'b'}; 
+let ave: {__proto__: vertebrado, attr3: 'c', attr2: 'x'};  
+
+console.log(ave.attr3);
+console.log(ave.attr2);  // irá retornar "x", pois ele foi sobrescrito.
+console.log(ave.attr1);  
+
+
+Como todos os objetos herdam de Object, é possível configurar atributos ou métodos padrões para todos 
+os objetos, por meio de Object. 
+Sintaxe: 
+Exemplo: 
+Object.prototype.attr50 = 'Z';  //configura "Z" como padrão para todos os objetos, pois herdam de Object.
+
+let animal: {attr1: 'a'};
+let vertebrado: {__proto__:animal, attr2: 'b'}; 
+let ave: {__proto__: vertebrado, attr3: 'c', attr2: 'x'};  
+
+console.log(ave.attr3);
+console.log(ave.attr2);  
+console.log(ave.attr1); 
+console.log(ave.attr50);  // irá retornar "Z", pois foi configurado como atributo padrão em Object. 
+
+
+
+
+
+
+

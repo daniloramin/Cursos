@@ -1,0 +1,44 @@
+É possível implementar uma fábrica para a criação dos objetos em tempo de execução.
+Em javascript, as funções factory combinam as chamadas de funções com o retorno de objetos literais, que 
+podem ser criados com base em parâmetros passados para essas respectivas funções.
+Basta chamar a função, passando ou não parâmetros, para ter o retorno de um objeto.
+
+Não é uma implementação técnica, mas sim um conceito que pode ou não ser aplicado, depende da 
+necessidade. É como se fosse uma ferramenta.
+
+Pode ser usado quando quer retornar um objeto que tem várias propriedades(vários keys) e quer deixa 
+um ou mais dessas propriedades dinâmicas.
+
+Sintaxe: 
+let BicicletaFactory = function (cor, marcha, aro) {
+    return {
+	cor: cor,
+	marcha: marcha,
+	aro: aro,
+	pedalar () {console.log('Método pedalar executado.')}
+    };
+};
+É possível utilizar as melhorias do ES6.
+Sintaxe: 
+let BicicletaFactory = function (cor, marcha, aro) {
+    return {
+	cor,
+	marcha,
+	aro,
+	pedalar () {console.log('Método pedalar executado.')}
+    };
+};
+
+Lembrando que acontece o retorno de um objeto literal, então é possíve fazer: 
+console.log(BicicletaFactory('Vermelha', '18', 26));
+
+
+A função factory é bem similar a função construtora, porém não utiliza o operador new. Não acontece a 
+instanciação de um objeto(acho?).
+
+
+
+
+
+
+

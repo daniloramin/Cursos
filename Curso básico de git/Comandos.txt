@@ -1,0 +1,197 @@
+Configuração inicial: 
+	git config --global user.name "Danilo Ramin"   press enter
+	
+	gi config --global user.email "daniloramin@hotmail.com"
+
+cd - entrar e sair de pastas - ex: cd aulas - cd aulas/git/projeto / voltar: cd ..
+
+clear - limpa o prompt
+
+git init - inicia um repositório na pasta em que você estiver trabalhando, no nível em que se encontra.
+
+git status - mostra o status dos arquivos, quais foram alterados(que precisam de um add), quais precisam 
+de um commit.
+
+git add - adiciona os arquivos na Staging Area - ex: git add readme.txt - git add .txt - git add . 
+
+git commit - manda os arquivos para o repositório - ex: git commit -m "mensagem do commit" - 
+git commit -a -m "mensagem do commit".
+
+touch .gitignore - cria o arquivo .gitignore para colocar o nome dos arquivos que deseja ignorar quando 
+der git add - pode colocar arquivos e pastas dentro, porém coloque um nome por linha.
+
+git diff - mostra as alterações feitas em um arquivo que está no diretório de trabalho. 
+(mostra as que ainda não estão na Staging Area).
+
+git diff --staged - mostra aquilo que está na Staging Area que será enviado para o próximo commit.
+
+git log - retorna um histórico de todos os commits feitos no projeto, desde o início até os dias atuais.
+
+git log -p - retorna uma lista de todos os commits feitos em ordem do mais recente, junto com o git diff.
+Retorna como paginção, então tem que dar Enter para descer a linha e quando finalizar basta apertar Q.
+
+git log -p -n - o "-n" é o número de retornos que vai ter no git log - Ex: git log -p -1 - vai retornar 
+apenas 1 commit, sendo ele o mais recente.
+
+git log --pretty=online - Serve para mostrar somente o código de cada commit e a mensagem desse commit.
+
+gitk - é a interface gráfica do git - não é muito interessante ficar vendo linhas de commits pelo 
+terminal, por isso é bom utilizar a interface gráfica.
+
+git commit --amend -m - utilizado para editar um commit - após editar o arquivo, faça um git add 
+manualmente (sem ser git commit -a -m), depois utilize o comando git commit --amend -m para 
+commitar a edição feita. Se possível, coloque "(edição)" no final da mensagem do commit.
+
+git reset HEAD - utilizado para retirar um arquivo que foi adicionado (add) na Staging Area. 
+Ex: git reset HEAD arquivo.php
+
+git checkout master - volta para a branch master.
+
+git checkout -- <arquivo> - descarta as mudanças feitas no arquivo, voltando para o código original. 
+Ex: git checkout -- funcoes.php
+
+git rm - utilizado quando se quer remover um arquivo do repositório. 
+Ex: git rm arquivo.txt
+
+
+
+-------- Tags e Branchs --------
+
+---- Tags ----
+git tag - lista as tags que existem no sistema. Bom para ver diferentes versões de um projeto.
+
+git tag -a <nome da tag> -m "Mensagem" - cria uma tag. O -a serve para criar uma tag anotada.
+A tag sempre é criada no seu commit atual.
+Ex: git tag -a v1.0 -m "Versao 1.0"
+
+git tag -a <codigo de um commit antigo> -m "Mensagem" - Cria uma tag para um commit mais antigo. 
+Ex: git tag -a dq98hg4nt65sdv3x -m "Versao 0.0"
+Para pegar o código de um commit antigo, utilize git log --pretty=online para ver os commits, vá no 
+canto esquerdo superior do terminal(provavel que seja a telinha), vá em "editar" e escolhe "marcar". 
+Depois seleciona apenas arrastando o click em cima do código e da ENTER para copiar. 
+Para colar em "git tag -a <codigo de um commit antigo>" basta apertar o comando Ctrl + Insert.
+
+git show <nome da tag> - mostra mais detalhes de uma tag.
+Ex: git show v0.0
+
+git checkout <nome da tag> - Muda os arquivos atual para os arquivos da tag escolhida. Útil para ver 
+os arquivos que estavam naquele commit.
+No git fica mostrando a tag escolhida em vez de "master".
+
+git tag -d <nome da tag> - deleta uma tag. 
+Ex: git tag -d v0.0
+
+Tags são ponteiros para um ponto específico do sistema.
+
+
+---- Branchs ----
+git branch <nome da branch> - serve para criar uma nova branch.
+Ex: git branch teste
+
+git branch - serve para listar todos os branches existentes no repositório.
+
+git checkout <nome da branch> - serve para trocar de branchs. Vai fazer a transição dos arquivos de 
+trabalho (working directory) para a branch escolhida para testes.
+Ex: git checkout teste
+
+git checkout -b <nome da branch> - serve para criar a branch e já trocar para ela.
+Ex: git checkout -b teste
+
+
+git merge <nome da branch com as alterações> - serve para trazer as alterações de uma branch para 
+mesclar, juntar as informações de uma branch com outra. Muito usado para trazer para o master as 
+alterações feitas em alguma branch.
+Caso queira trazer dados de uma branch para o master, tem que estar dentro da branch master. Isso serve 
+para todas as branchs, deve sempre estar na branch destino, para trazer os códigos da origem.
+Ex: git merge teste
+
+git branch -d <nome da branch> serve para deletar a branch.
+Ex: git branch -d teste
+
+Há casos em que duas ou mais pessoas vão editar uma mesma função, mesma linha de códigos e causar 
+conflitos na hora de dar merge. Caso isso aconteça, o git irá avisar que há conflito e ficará 
+mostrando (marter | MERGING) em vez de mostrar só (master). Então deverá remover os conflitos 
+manualmente, entrando no arquivo e escolhendo qual código usar. O git irá mostrar como 
+possibilidade os códigos que estão em conflito, basta apagar o que não deseja usar e então fazer 
+o commit normalmente.
+
+Branchs servem para criar ambientes de testes. Exemplo real caso esteja trabalhando em uma branch e 
+um cliente pede uma alteração nesse mesmo sistema. Para não perder tudo o que fez, basta trocar para 
+a branch master e enviar a alteração. Após isso, basta voltar para a branch que estava trabalhando que 
+os seus códigos estarão lá.
+
+
+
+-------- Utilização em servidor local --------
+git init --bare - serve para fazer com que outras máquinas possam ter acesso a esse repositório em rede. 
+Com apenas git init aparentemente não seria possível.
+
+Foi estudado git clone, git push e git pull.
+
+Mais sobre na aula 6 do rbtech git
+
+
+
+-------- Utilização do github com o git --------
+A primeira coisa a se fazer é dar acesso ao computador local para ele conseguir interagir com a conta 
+do github. Isso é feito através de uma chave SSH de autenticação.
+
+ssh-keygen - serve para gerar um par de chaves SSH. Após isso irá pedir o nome do arquivo, porém não 
+precisa digitar nada. Após isso é possível escolher uma senha caso queira proteger a chave com uma 
+senha. Aparentemente caso não queira colocar a senha bastar dar Enter e depois Enter.
+Após isso vai mostrar o endereço onde o par de chaves foi criado. Esse endereço por padrão é em 
+sua pasta de usuário do sistema operacional, ex: C:\users\danil\.ssh\. Dentro da pasta ssh irá ter 
+o par de arquivos da chave gerada.
+Abra o arquivo id_rsa.pub(com o bloco de notas mesmo) e copie o código que estiver dentro dele. Esse 
+código deverá ser levado para a conta no github.
+
+No github, vá em account settings, depois escolhe SSH Keys e clique em add SSH key. Escolha o título e 
+cole o código em key.
+
+A criação da chave dará autorização para acessar o github através do gitbash local.
+
+
+---- Criando um repositório ----
+Na home do github clique em repositories. Irá mostar todos os repositórios criados. É possível filtrar 
+os repositórios já existente na conta. Para criar um novo repositório basta clicar em New.
+
+Caso queira usar localmente(por exemplo) o repositório criado é necessário clonar o repositório e em 
+seguida fazer um push das alterações, e quando quiser pegar as alterações do repositório, basta 
+fazer um pull.
+
+Exemplo através de clone por endereço SSH:
+Escolha uma pasta para clonar o repositório. Primeiro será necessário procurar o endereço SSH para 
+clonar esse repositório e então irá copiar esse endereço. Atualmente é encontrado entrando no 
+repositório pelo github e clicando no botão verde "Code". 
+Após copiar esse endereço, basta entrar no git bash e digitar o comando: 
+git clone <endereço SSH> <nome caso queira trocar o nome do repositório>
+Ex:
+git clone git@github.com:daniloramin/investimentos.git investimentos1
+
+Para colar o endereço no terminal, basta clicar Shift + Insert. Na primeira vez que utilizar o acesso do 
+computador local para o github, o git irá perguntar se confirma que deseja se conectar a um servidor.
+Caso digitar "yes" ele não irá mais fazer essa pergunta. Caso digitar "no" ele irá fazer essa pergunta 
+toda vez. Dando "yes" o git irá adicionar o github permanentemente na sua lista de servidores confiáveis.
+
+Depois de clonar o arquivo, basta fazer o processo normal de desenvolvimento, criar, editar, dar git 
+status, git add, git commit. (lembre de dar cd para dentro do repositório caso não tenha feito 
+isso ainda).
+
+O repositório criado no github aparentemente já é criado como um main.
+
+Para mandar os arquivos para o repositório online basta usar o comando: 
+git push origin main
+
+Para pegar do github as alterações feitas no projeto, basta utilizar: 
+git pull origin main
+
+
+Para deletar um repositório no github, basta selecionar o repositório, ir em settings e depois em 
+delete this repository. Após isso basta confirmar o nome do repositório que deseja deletar.
+
+
+
+
+
+
+

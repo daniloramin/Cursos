@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    
+    
+</head>
+<body>
+    <button onclick="neon.verificaSaldo()">Verificar Saldo</button> 
+    <span id="saldoAtual" style="border: 1px solid black; width: 300px;"></span>
+    <br><br>
+    <label>Digite um valor para a operação</label>
+    <br>
+    <input id="valor" type="text">
+    <br>
+    <button id="deposito" onclick="neon.depositar()">Depositar</button>
+    <button id="saque" onclick="neon.sacar()">Sacar</button>
+    
+    <script>
+        class ContaBancaria {
+            constructor (nome, telefone, rg) {
+                this._numero = 18970;
+                this._agencia = 984;
+                this._saldo = 0.00;
+            }
+            verificaSaldo () {
+                document.getElementById('saldoAtual').innerHTML = saldo();
+            }
+            sacar () {
+                let x = document.getElementById('valor').value;
+                saldo = -x;
+            }
+            depositar () {
+                let x = parseFloat(document.getElementById('valor').value);
+                saldo = x;
+            }
+            get saldo () {
+                return this._saldo;
+            }
+            set saldo(valor) {
+                this._saldo += valor;
+            }
+
+        }
+        let produto = {nome: 'notebook', preço: 2700.00};
+        console.log(produto);
+        let neon = new ContaBancaria();
+        console.log(neon);
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+Trabalhando com o Git Hub em conjunto com o Git para controle de versões.
+	
+	O git hub é um site que oferece um serviço de armazenagem online, na nuvem, de repositórios 
+	para desenvolvedores.
+	
+	A primeira coisa a se fazer após criar a conta do Git Hub é dar acesso ao computador local 
+	para que ele consiga interagir com a sua conta no Git Hub. Isso é feito através de uma chave 
+	SSH de autenticação.
+	Como fazer isso? Primeiro, abra o git bash e gere um par de chaves SSH. Para isso, será 
+	digitado o comando: 
+	ssh-keygen
+	
+	Então, será pedido o nome de algum arquivo. Nesse caso, não precisa digitar nada, apenas dar 
+	Enter novamente. Após isso, será pedido uma senha, caso queira proteger a chave com uma senha, 
+	porém, toda vez que quiser fazer operações com o seu repositório, irá precisar dessa senha. 
+	Essa senha é opcional.
+	Após isso, será mostrado uma mensagem dizendo que a par de chaves foi criado com sucesso. 
+	Também será mostrado o endereço onde ela foi salva. Geralmente cria dentro da pasta de perfil 
+	de usuário.
+	
+	Indo na pasta que está armazenada as chaves, deverá ser aberto o arquivo "id_rsa.pub". Essa é 
+	a chave pública. Esse arquivo pode ser aberto com o bloco de notas. 
+	Depois disso, o código desse arquivo deverá ser copiado e levado para a conta no Git Hub. 
+	No Git Hub, clicar em "account settings", escolher a opção "SSH Keys", clicar em "Add SSH Key". 
+	Após isso, basta escolher o título para a chave no campo título e colar ó código da chave no 
+	campo key. Depois, clique em add key.
+	Com isso, a chave SSH estará salva, dando autorização para acessar o Git Hub através do git bash 
+	local.
+	
+	
+	Voltando para o home da conta github, será criado o primeiro repositório.
+	Para criar um repositório basta clicar em "repositories" e depois clicar em "new". 
+	Coloque o nome do repositório, uma descrição (opcional), escolher entre repositório público ou 
+	privado(terá que fazer uma assinatura mensal com o github), assinalar se deseja inicializar o 
+	repositório com o arquivo README e, ao final, pode colocar para adicionar um gitignore e 
+	também um arquivo de licença no repositório.
+	Após isso, basta clicar em "Create Repository". 
+	
+	Depois de criado, o repositório pode ser acessado na aba "Repositories" que está na homepage do 
+	seu github.
+	
+	
+	Caso queira utilizar esse repositório, por exemplo, localmente colocando arquivos nele e 
+	mandar de volta par ao github, é preciso clocar o repositório e em seguida fazer um push dessas 
+	alterações e quando quiser pegar as alterações é só fazer um pull.
+	
+	Clonando o repositório para uma pasta local.
+	Primeiramente deverá procurar o endereço SSH para a clonagem desse repositório e vai copiar ele. 
+	Geralmente ele aparece na lateral da tela do repositório no github. É possível clonar ele por 
+	HTTPS, SSH ou Subversion. Obrigatóriamente, como está sendo utilizado autenticação em SSH e 
+	por causa das versões novas do git bash que foi instalado localmente, o SSH é o mais indicado, 
+	pois as outras opções são capazes de não permitir que você faça um das informações depois. 
+	Após selecionar SSH, basta clicar no botão para copiar o código.
+	
+	Depois disso, vá ao gitbash e digit o comando "git clone" e em seguida cole o endereço 
+	utilizando (Ctrl + Ins). Caso queira trocar o nome do seu repositório, basta dar um espaço 
+	após o enredeço e colocar o nome que desejar(o nome da pasta no caso de onde esse repositório 
+	vai ser clonado). Ex: git clone endereço nome
+	Ex sintaxe: 
+	git clone git@github.com:rbtechinfo/curso-git.git github1
+	
+	Após dar Enter, será feita a clonagem localmente do repositório. 
+	No primeiro acesso, irá aparecer a pergunta se confirma que quer se conectar a um servidor.
+	Se der "yes" ele não fará mais essa pergunta. Se der "no" ele irá fazer essa pergunta todas as 
+	vezes.
+	Dê "yes" para que seja adicionado permanentemente o github na sua lista de servidores confiáveis. 
+	
+	
+	Após a criação, ao ir na pasta local onde foi criada essa pasta, irá ver que ela foi criada 
+	com um arquivo "README.md" dentro.
+	
+	Lembre-se de entrar no repositório com o comando "cd" quando estiver no git bash, caso não 
+	esteja dentro dele ainda.
+	
+	
+	Se, por exemplo, quiser criar um segundo repositório com base nesse repositório do github, para 
+	trabalhar com os dois em paralelo, basta fazer um git clone, fazer as alterações, dar o git add, 
+	e dps o git push, enviando os arquivos para o repositório online.
+	
+	Agora, se entrar no primeiro repositório para atualizar os arquivos, é necessário fazer um 
+	pull do servidor. Para isso, utiliza-se "git pull origin master". Após isso, o primeiro 
+	repositório também estará atualizado.
+	
+	
+	Dica: O arquivo "README.md" é o que permite a personalização da página de exibição principal 
+	do repositório.

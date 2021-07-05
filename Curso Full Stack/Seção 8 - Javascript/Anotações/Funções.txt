@@ -1,0 +1,80 @@
+Quando uma função encontra o operador return ela para na hora, retornando o valor para o local que foi 
+chamada.
+
+alert() exibe um alerta na tela. Bom para debug, para exibir valores de variaveis na tela.
+
+prompt() funciona como um input do browser. Irá receber os valores sempre como string.
+
+-------- Conversão de tipos --------
+Geralmente os dados externos ao script js são recebidos como string.
+Funções:
+parseInt(), parseFloat();
+var x = number;
+Vindo de uma fonte externa, se o número fosse 7 ou 7.5, ele seria recebido como uma string para "x".
+Para fazer a conversão para um número inteiro, seria: 
+x = parseInt(x);
+Lembrar sempre de atribuir a conversão da variável a uma variável.
+
+
+-------- Funções Anônimas --------
+São funções que não possuem nome. Foi dito que existe utilização desse tipo de função em 
+callback(passagem de funções como parâmetros para outras funções) para outras funções.
+Seria a declaração de uma função dentro de uma variável.
+
+
+-------- Manipulação de Strings --------
+string.length - vai dizer o tamanho da string
+
+string.charAt(numero inteiro) - retorna o caractere em uma posição
+
+string.indexOf(caractere) - retorna a posição da primeira ocorrencia encontrada do caractere
+
+string.replace(string da frase, substituição) - substitui um valor de uma string por outro
+
+string.substr(inteiro inicial, inteiro quantos a frente) - recorta a string
+
+string.trim() - remove espaços em branco nas laterais
+
+string.toLowerCase()
+string.toUpperCase()
+
+-------- Tarefas Matemáticas --------
+Math.ceil(numero float) - arredonda pra cima
+Math.floor(numero float) - arredonda pra baixo
+Math.round(numero float) - arredonda pra cima ou para baixo com base na media.
+Math.random() - gera um número aleatório entre 0 e 1
+
+eval(string da expressão matematica) - pega uma string que representa uma expressão matemática(ex: 
+"11+4-9*2") e executa ela como uma operação normal.
+
+
+-------- Manipulação de datas --------
+Tem que instanciar o método date: 
+var data = new Date();
+
+data.getDate() - recupera o dia do mes que está de 1 a 31.
+
+data.getMonth() - recupar o mes que está de 0 a 11
+
+data.getFullYear() - recupera o ano
+
+data.toString() - vai mostrar uma representação textual do objeto data.
+
+data.setDate(data.getDate() + 1) - configura um dia do mês. Foi feito no exemplo uma forma de adicionar 
+um dia na data atual, mas o parâmetro passado é simplesmente o número do dia que deseja colocar na data.
+
+data.setMonth() - configura um mes.
+
+data.setFullYear() - configura um ano.
+
+data.getTime() - recupera o tanto de milissegundos entre a data de 1 de janeiro de 1970 e a data que 
+estiver trabalhando. Isso serve para fazer cálculos entre datas. Caso o cálculo de um número negativo, 
+utilizar o método Math.abs(formula para calcular diferença das datas), para que o valor seja convertido 
+para positivo, ou seja, o valor absoluto.
+
+
+
+
+
+
+

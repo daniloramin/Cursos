@@ -1,0 +1,209 @@
+O operador Destructuring é um operador de desestruturação. Basicamente falando, ele tira valores de 
+dentro de uma estrutura, podendo ser essa estrutura um array ou um objeto.
+
+
+-------- Utilizando no contexto de arrays --------
+Imagine que tenha um array e queira atribuir os dados de seus índices à variáveis.
+Sintaxe padrão: 
+let frutas = ['abacaxi', 'banana', 'uva', 'morango'];
+let a = frutas[0];
+let b = frutas[1];
+console.log(a, b);
+
+Dessa maneira fica muito verboso e extenso o código. 
+Para melhorar isso, é utilizado o operador Destructuring. Basicamente é escolhido um operador de 
+declaração(const ou let) e logo após é colocado abre e fecha colchetes [], antes do operador de 
+atribuição(=). Dentro dos colchetes é colocado/declarado variáveis onde serão armazenados os dados dos 
+índices, sendo atribuído em ordem. Após o operador de atribuição, é colocado o array que deseja 
+desestruturar.
+Sintaxe: 
+let frutas = ['abacaxi', 'banana', 'uva', 'morango'];
+let [a, b] = frutas; // "abacaxi" foi atribuído a variável "a" e "banana" foi atribuído a variável "b".
+console.log(a, b);
+
+let [a, b] = ['abacaxi', 'banana', 'uva', 'morango']; // também funciona.
+
+
+É possível pular elementos de um array na sua desestruturação. Para isso basta apenas colocar um valor 
+vazio na posição que representa o respectivo índice.
+Sintaxe: 
+let frutas = ['abacaxi', 'banana', 'uva', 'morango'];
+let [a, b, , c] = frutas;  // Não atribui "uva" a nenhuma variável, pulando para "morango".
+console.log(a, b, c);
+
+
+É possível atribuir valores padrões na desestruturação de arrays. Para isso basta utilizar o operador 
+de atribuição na variável e em seguida o valor que será utilizado por default caso o retorno seja 
+undefined. Caso tente atribuir um valor default exista um valor em uma posição onde aconteca o 
+destructuring, ou seja, não tenha valor undefined, o valor default será desconsiderado. 
+Sintaxe: 
+let frutas = ['abacaxi', 'banana', 'uva', 'morango'];
+let [a, b, c, d, e = 'maçã'] = frutas;  // Como não existe o quinto índice, seria retornado undefined.
+console.log(a, b, c, d, e); // retorna "maçã" na variável "e", pois foi atrubuído a ela.
+
+
+É possível extrair valores de array multidimensionais. Para isso, basta abrir um novo [].
+Sintaxe: 
+let coisas = [['abacaxi', 'banana', 'uva', 'morango'], ['danilo', 'débora']];
+let [, [, a]] = coisas;  // pulou o primeiro índice(primeiro array) e armazenou o nome "débora".
+let [, x] = coisas;  // pulou o primeiro índice(primeiro array) e armazenou o segundo array.
+
+
+
+
+-------- Utilizando no contexto de objetos --------
+É similar a sintaxe para utilização em arrays, porém em vez de colchetes, é utilizado chaves {}. 
+Na atribução é colocado o nome dos atributos às variáveis.
+Sintaxe: 
+let produto = {
+    descricao: 'notebook',
+    preco: 1800, 
+    detalhes: {
+	fabricante: 'abc', 
+	modelo: 'xyz'
+    }
+};
+let {descricao, preco} = produto;  // será criado as variáveis descricao e preco com os valores dos 
+				      respectivos atributos.
+
+
+Caso queria criar variáveis com nomes diferentes dos nomes dos atributos, basta utilizar o operador 
+dois pontos(:) e passar o nome da variável que vai conter o valor que será extraído do objeto.
+Sintaxe: 
+let produto = {
+    descricao: 'notebook',
+    preco: 1800, 
+    detalhes: {
+	fabricante: 'abc', 
+	modelo: 'xyz'
+    }
+};
+let {descricao: d, preco: p} = produto; // foi criado as variáveis "d" e "p" para armazenar os valores 
+					   de descricao e preco respectivamente.
+
+Basicamente, foi desestruturado descricao e preco de produto, sendo atribuído descricao a variável "d" e 
+preco a variável "p", sendo criado d e p dentro do script, e não descricao e preco.
+
+
+É possível a utilização de valores default, de forma análoga a utilização nos arrays.
+Sintaxe:
+let produto = {
+    descricao: 'notebook',
+    preco: 1800, 
+    detalhes: {
+	fabricante: 'abc', 
+	modelo: 'xyz'
+    }
+};
+let {descricao: d, preco: p, desconto = 5} = produto; //caso desconto seja undefined, irá retornar 5.
+
+console.log(d, p, desconto); // como desconto não existe(undefined), irá assumir o valor 5.
+
+
+O valor default é ignorado caso não retorne undefined(exista valores atribuídos), igual na utilização 
+em arrays.
+
+
+É possível a extração de atributos de objetos pertencentes a outros objetos. Para isso também é 
+utilizado o operador dois pontos, vindo loogo após uma nova abertura de chaves. 
+Sintaxe: 
+let produto = {
+    descricao: 'notebook',
+    preco: 1800, 
+    detalhes: {
+	fabricante: 'abc', 
+	modelo: 'xyz'
+    }
+};
+let {detalhes: {fabricante: f, modelo: m}} = produto; // está acessando o objeto detalhes e atribuindo 
+							os valores de fabricante e modelo às variáveis 
+							"f" e "m" respectivamente.
+
+
+
+let {detalhes: {fabricante: f, modelo = 'Não informado'}} = produto; // também é possível default.
+
+
+
+
+-------- Utilizando no contexto de funções--------
+Como passar arrays e objetos como parâmetros para funções, e dentro das funções capturar apenas o que 
+é necessário desses arrays e objetos, utilizando o recurso de desestruturação.
+
+Imagine um script que tenha um array com valores e uma função que irá receber alguns desses valores do 
+array para executar o retorno.
+Sintaxe padrão: 
+let arr = [10, 20, 30, 40];
+
+funciton teste (a, b) {
+    console.log(a, b);    
+}
+teste(arr[0], arr[1]);
+
+
+Com o Destructuring é possível passar o array como parâmetro e então selecionar os valores específicos. 
+Para isso basta receber o array(que foi passado por parâmetro) com a estrutura do Destructuring.
+Sintaxe: 
+let arr = [10, 20, 30, 40];
+
+funciton teste ([a, b]) {  // pega os valores respectivos ao primeiro e segundo índice do array param.
+    console.log(a, b);    
+}
+teste(arr);
+
+
+Também é possível pular valores e receber valores default: 
+let arr = [10, 20, 30, 40];
+
+funciton teste ([a, b, , c, d = 100]) {  // foi pulado o valor 30, sendo atribuído o valor 40 a 
+					    variável "c". Como "d" não existe, 100 retornará por default.
+    console.log(a, b, c, d);    
+}
+teste(arr);
+
+
+
+Da mesma forma que foi feito com arrays, é possível desestruturar objetos passados por parâmetros. 
+Para isso basta colocar o token {} em vez de [] na desestruturação na assinatura dos parâmetros.
+Sintaxe: 
+let obj = {
+    a: 10,
+    b: 20,
+    c: 30,
+    d: 40
+};
+function teste ({a: x, b, z = 6}) { //é possível modificar o nome da variável como foi modificado em "a".
+    console.log(x, b, z);
+}
+teste(obj);
+
+
+Um detalhe importante é que quando se trabalha com array é utilizado a sequência do array, poré, 
+quando se trabalha com objetos, é utilizado os atributos diretamente, não precisando seguir uma ordem. 
+
+
+
+-------- Como utilizar o Destructuring em conjunto com o operador Rest --------
+Imagine que tenha um array com valores e queira armazenar em uma variável o valor do primeiro índice, 
+porém queira armazenar todos os outros valores que sobrarem em outra variável.
+Sintaxe: 
+let arr = [10, 20, 30, 40];
+let [a, ...resto] = arr; // armazena na variável resto todos os valores após o primeiro índice.
+console.log(a);
+console.log(resto); // os valores foram desestruturados e armazenados na variável resto, como array.
+
+
+O mesmo pode ser feito para objetos. Isso é feito de forma similar aos array, mudando os [] para {}.
+Sintaxe: 
+let obj = {a:10, b:20, c:30, d:40};
+let {a, ...z} = obj;  // armazena na variável "z" todos os atributos após o primeiro.
+console.log(a);
+console.log(z);  // os atributos foram juntados dentro de "z" como um objeto.
+
+
+
+
+
+
+
+

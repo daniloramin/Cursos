@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>JavaScript</title>
+
+		
+		<style>
+			
+			.leo {
+				background-color: salmon;
+				color: black;
+			}
+
+			.biel {
+				background-color: lavender;
+				color: slateblue;
+			}
+
+			.hendrie {
+				background-color: black;
+				color: white;
+			}
+
+			.danilo {
+				background-color: ghostwhite;
+				color: skyblue;
+			}
+
+		</style>
+
+
+		<script>
+
+			function ativaDiv() {
+				var nome = document.getElementById('nomes').value
+
+				if (nome == 'gabriel') {
+					document.getElementById('resultado').className = 'biel'
+					var div = document.getElementById('resultado').value = 'Gabriel designer cringe'
+				} else if (nome == 'leonardo') {
+					document.getElementById('resultado').className = 'leo'
+					document.getElementById('resultado').value = 'Leonardo pirateador cringe'
+				} else if (nome == 'hendrie') {
+					document.getElementById('resultado').className = 'hendrie'
+					document.getElementById('resultado').value = 'Hendrie barbeiro cringe'
+				} else if (nome == 'danilo') {
+					document.getElementById('resultado').className = 'danilo'
+					document.getElementById('resultado').value = 'Danilo progamador cringe'
+				} else {
+					document.getElementById('resultado').value = 'Erro'
+				}
+			}
+			
+		</script>
+		
+	</head>
+	<body>
+		
+		<input type="text" id="nomes">
+		<button onclick="ativaDiv()">Clica</button>
+		<hr>
+
+		<input type="text"  id="resultado" style="width: 160px; height: 100px; border: 1px solid;" disabled="disabled">
+
+	</body>
+</html>

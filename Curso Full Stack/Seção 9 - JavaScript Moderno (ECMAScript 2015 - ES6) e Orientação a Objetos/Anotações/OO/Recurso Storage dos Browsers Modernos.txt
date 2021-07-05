@@ -1,0 +1,105 @@
+Será trabalhado com Storage, mas especificamente Local Storage. Irá persistir os dados da aplicação 
+no Storage do próprio navegador, podendo incluir e consultar registros posteriormente.
+Esse recurso faz parte do conceito de PWA.
+É possível armazenar as informações de forma local e sincronizar com o backend quando houver uma 
+conexão com a internet.
+
+
+-------- Web Storage --------
+Session Storage - Armazena informação enquanto a instância do navegador está ativa. Após fechar a 
+instância do navegador, todas as informações armazenadas em session storage são perdidas.
+
+Local Storage - É um armazenamento persistente. Os dados permanecem armazenados mesmo após fechar a 
+instância do navegador. Só são excluídos de forma intencional.
+
+
+Dentro do front-end existe armazenamentos de dados mais complexos, como IndexDB e Web SQL.
+
+
+Para armazenar dados em local storage é utilizado a instrução "localStorage". Essa instrução retorna 
+um objeto de manipulação do local storage do browser, tendo acesso a alguns métodos. 
+Um exemplo desses métodos é o ".setItem" que permite a passagem de dois parâmetros, sendo o primeiro a 
+identificação do objeto a ser armazenado, e o segundo parâmetro é o dado que deseja armazenar, sendo que 
+esse dado deve ser encaminhado através de uma notação JSON. Caso estiver trabalhando com um objeto, 
+é necessário converter ele para notação JSON. Para isso é utilizado a função stringify do objeto JSON, 
+passando por parâmetro o objeto literal que deseja converter pra uma notação JSON.
+Sintaxe: 
+let obj = {
+    nome: 'danilo',
+    idade: 20
+};
+localStorage.setItem('pessoa', JSON.stringify(obj));
+
+
+Para ver esse resultado, basta ir nas ferramentas de desenvolvedor do browser e ir no recurso 
+Application. Dentro de application irá encontrar irá encontrar a dimensão "storage" e dentro dela irá 
+encontrar "local storage". Dentro de local storage irá mostrar os dados gravados em local storage, 
+podendo acompanhar a gravação de objetos.
+Porém, caso tentar gravar outro dado, os dados já gravados serão atualizados para o novo dado gravado, 
+sendo que o correto seria inserir um novo dado. 
+Quando é utilizado o método setItem, caso um dado seja inserido com o nome de uma mesma chave existente, 
+ele irá sobrescrever a existente. É necessário um identificador único para cada registro feito dentro 
+de local storage.
+
+
+Ctrl + F5 atualiza a página removendo o cache do navegador.
+
+
+---- Objetos literais vs Notação JSON ----
+Objetos literais e notação JSON, por mais que sejam parecidos, são recurso utilizados em contextos 
+bem diferentes. 
+
+JSON nada mais é do que uma String.
+
+Sintaxe objeto literal: 
+let pessoa = {nome: 'danilo', idade: 20};
+
+Sintaxe JSON:
+let pessoaJSON = '{"nome": "danilo", "idade": 20}';
+
+A notação de um JSON é dentro de operadores de string (', " ou `), e também utiliza abre e fecha chaves, 
+de forma análoga a objetos literais. Depois é passado os pares, sendo passado dentro de operadores de 
+String tanto a kay quanto o value. Porém repare que como idade é um valor numérico, ele não precisa 
+receber um operador de String. 
+
+Objetos literais não podem ser transitados entre aplicações, pois objetos só existêm na instância da 
+aplicação. 
+Então, é transcrevido o objeto para uma notação de texto(que é o caso da notação JSON), para que esse 
+texto seja anexado a essa comunicação que será feita com o próprio backend da aplicação ou com outras 
+aplicações.
+O JSON é um recurso que atua nessa comunicação.
+
+
+Nesse ponto, entra uma biblioteca importante do javascript, a biblioteca JSON. A partir dela é 
+possível utilizar o método stringify(), que converte um objeto literal diretamente para um string JSON. 
+
+O inverso também é possível, ou seja, converter um JSON em um objeto literal. Para isso, basta utilizar 
+a biblioteca JSON e o métodos parse(), passando a string que representa um JSON válido. 
+Sintaxe: 
+let pessoaJSON = '{"nome": "danilo", "idade": 20}';
+let x = JSON.parse(pessoaJSON);
+console.log(x);
+
+
+
+SetItem serve para inserir um dado dentro de local storage. Já getItem, serve para recuperar um dado 
+dentro de local storage. Muito útil para recuperar IDs, podendo recuperar o último e com isso 
+implementar uma lógica de inserção de elementos de forma dinâmica, já que o ID a ser inserido tem que 
+ser diferente dos outros já inserido. 
+Sintaxe: 
+let proximoId = localStorage.getItem('id'); // recupera o valor da chave de nome "id".
+
+
+
+Para remover um item de local storage, é utilizado o método .removeItem(key) que recebe como parâmetro 
+a key que identifica o registro a ser excluído.
+Sintaxe: 
+localStorage.removeItem(2);
+
+
+
+
+
+
+
+

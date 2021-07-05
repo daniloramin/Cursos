@@ -1,0 +1,128 @@
+
+-------- Variáveis - var e let --------
+O let é um operador de declaração de variável assim como o var. A diferença do let para o var é que o 
+let preserva o scope onde a varia´vel foi declarada. 
+O var declara uma variável onde acontece o sistema de elevação de escopo global. 
+O let não permite essa elevação de escopo, mantendo a variável inacessível para os scopes superiores.
+
+-- Const --
+Também é um operador de declaração de variáveis, funcionando de forma análoga ao let, porém sendo uma 
+constante.
+A sintaxe para a criação de variáveis constantes é feita com o nome da variável em maiúsculo. 
+Ex: 
+cons NOME = 'nome1';
+
+A constante precisa receber um valor no momento de sua declaração.
+
+
+
+-------- Template String --------
+O template string é semelhante ao recurso de concatenação, a diferença é que dentro da string ele abre 
+pequenas janelas que serão processadas pelo interpretador do javascript e o resultado dessa 
+interpretação será concatenado à string em questão.
+O termo apropriado seria a interpolação de codificação javascript com strings.
+
+A string no template string deve ser colocado dentro de crases(``). A variável a ser concatenada deve 
+ser colocada dentro de ${}. 
+Ex:
+let nome = 'danilo';
+console.log(`Oi ${nome}, tudo bem?`);
+
+Um detalhe interessante é que com as crases, as quebras de linhas são permitidas.
+Ex: 
+let nome = 'danilo';
+console.log(`
+    Oi ${nome}, 
+    tudo bem?
+`);
+O retorno seria a string formatada nesse mesmo modelo que foi escrito.
+
+Outro detalhe é que pode ser colocado qualquer expressão. 
+Ex:
+console.log(`7 + 7 = ${7+7}`);
+
+Também é possível executar funções dentro de ${}.
+
+
+
+-------- Funções - Parâmetros Default --------
+Possibilita a definição de valores default para os parâmetros de uma função.
+Ex:
+function viagem (partida, chegada) {
+    document.write(`Eu saí de ${partida} e fui viajar para ${chegada}`);
+}
+viagem(); O retorno sem parâmetros seria: Eu saí de undefined e fui viajar para undefined.
+
+Isso aconteceu pois não foi passado os parâmetros para a função.
+Para contornar esse erro, é atribuido um valor default para o parâmetro. 
+Sintaxe: 
+function viagem (partida = 'Rio Preto', chegada = 'Gramado') {
+    document.write(`Eu saí de ${partida} e fui viajar para ${chegada}`);
+}
+viagem(); O retorno sem parâmetros seria: Eu saí de Rio Preto e fui viajar para Gramado.
+
+Houve o retorno com os valores pré-definidos, pois não foi passado nenhum parâmetro.
+
+
+Um detalhe, caso queira que o valor padrão seja atribuído ao parâmetro, basta passar o valor undefined 
+na chamada da função no respectivo lugar do parâmetro.
+Ex:
+function viagem (partida = 'Rio Preto', chegada = 'Gramado') {
+    document.write(`Eu saí de ${partida} e fui viajar para ${chegada}`);
+}
+viagem(undefined, 'Praia'); Retorno: Eu saí de Rio Preto e fui viajar para Praia.
+
+
+
+-------- Funções - Arrow function --------
+É uma forma mais simplificada de escrita de funções anônimas.
+Sintaxe de uma função anônima tradicional:
+let quadrado = function (x = 5) {
+    return x * x;
+}
+document.write(quadrado(3)); Retorna 9.
+
+Uma Arrow function tira a palavra function em sua declaração, bastando utilizar apenas abre e fecha 
+parênteses, colocando dentro dos parênteses os parâmetros a serem passados (). 
+Em sequência é utilizado o sinal de igual maior => (parece uma flecha, por isso o nome arrow function). 
+Em seguida vem o bloco de códigos relativo a essa função.
+de códigos relativo
+Sintaxe de uma Arrow function:
+let quadrado = (x = 5) => {
+    return x * x;
+}
+document.write(quadrado(3)); Retorna 9.
+
+As arrow functions podem ser melhoradas ainda mais. Um exemplo é caso estiver recebendo apenas um 
+único parâmetro, é possível omitir a instrução de abrir e fechar parênteses.
+Sintaxe: 
+let quadrado = x => {
+    return x * x;
+}
+document.write(quadrado(3)); Retorna 9.
+
+Caso estiver recebendo nenhum ou mais de um parâmetro, será obrigatório o uso dos parênteses.
+
+
+Outro detalhe interessante é que, caso exista apenas uma instrução de retorno, ou seja, não tem um 
+bloco de lógica, não é preciso utilizar o abre e fecha chaves e o return, podendo simplesmente indicar 
+a instrução a ser retornada logo após o igual maior (=>).
+Sintaxe: 
+let quadrado = x => x * x;
+document.write(quadrado(3)); Retorna 9.
+
+
+Exemplo mais complexo de arrow function utilizando um retorno em cima de um if ternário: 
+let parOuImpar = numero => numero % 2 === 0 ? 'par' : 'impar;
+document.write(parOuImpar(5)); Retorna 'impar'.
+
+
+
+
+
+
+
+
+
+
+

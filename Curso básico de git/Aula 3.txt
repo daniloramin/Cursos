@@ -1,0 +1,70 @@
+Como visualizar de uma forma mais detalhada todas as alterações que tem no repositório de 
+trabalho, na Staging Area, ou até mesmo alterações feitas em commits anteriores.
+Uma forma muito simples de visualizar as alterações que foram feitas ao passar do tempo.
+	
+	Para começar, acesse o repositório. Ex: "cd pasta/pasta1/local"
+	
+	Faça uma alteração e utilize o "git status". Será visto os arquivos que sofreram alterações, 
+	após a última vez que foi feito commit. Caso queira consultar o que foi alterado dentro desse 
+	arquivo, basta utilizar o comando: 
+	git diff
+	
+	É retornado em vermelho o que foi removido desse arquivo e é retornado em verde o que foi 
+	adicionado nele.
+	(Geralmente na última linha ele marca como remoção e nova inclusão, por causa da edição de 
+	texto que quebra a linha somente quando da o Enter no final dela).
+	
+	Com esse comando, será possível consultar todas as alterações feitas em um arquivo que está 
+	no diretório de trabalho, porém que ainda não foi adicionado na Staging Area.
+	
+	Caso utilize "git add" e logo após "git diff", o "git diff" não irá retornar nada, pois não 
+	se tem mais nenhuma alteração no diretório de trabalho que não esteja na Staging Area.
+	
+	Para saber aquilo que esteja na Staging Area, que vai ser enviado para o próximo commit, terá 
+	que utilizar um parâmetro extra no "git diff".
+	git diff --staged
+	
+	O "--staged" está se referindo a Staging Area que é onde estão os arquivos no momento. 
+	O retorno será o mesmo de quando utilizou o "git diff" antes de utilizar o "git add". 
+	
+	A partir do momento que for dado um commit no arquivo, essa alteração irá sumir, e o 
+	"git diff --staged" também retornará vazio. 
+	
+	
+	Entendendo sobre o "git log". O "git log" mostra um log de todos os commits que foram feitos no 
+	projeto, desde o início, até os dias atuais. Para utilizar, basta utilizar: 
+	git log
+	
+	O retorno será um histórico de todos os commits.
+	É visto que tem uma linha logo no início que diz "commit (número de uma chave)". Essa chave 
+	serve para referênciar o commit, caso queira voltar a versão atual para aquela versão da 
+	chave a ser referênciada. Essa transição de versão é feita utilizando a chave do commit.
+	
+	Caso achar o "git log" um pouco vago e queira ver mais informações adicionais, basta colocar 
+	mais alguns parâmetros.
+	Utilizando o parâmetro "-p": 
+	git log -p
+	
+	Com "-p", os commits são ordenados do mais recente para o mais antigo. Também é mostrado o 
+	"diff" de cada um dos commits, ou seja, o que foi feito em cada arquivo que foi alterado nesse 
+	commit, mostrando meio que uma junção entre o "git log" e o "git diff".
+	Ele retorna como paginação. Então, para ver todas as linhas, basta ir apertando Enter para ir 
+	descendo linha por linha.
+	No final, irá aparecer "(END)", dizendo que terminou a tela de relatório. Para finalizar, 
+	basta apertar a tecla "Q".
+	
+	Caso queira trazer arquivos específicos dentro de "git log -p" e não todos os arquivos, pode 
+	utilizar o recurso de limitar os commits que serão tragos na tela através do comando log. 
+	Para isso, basta colocar mais um parâmetro, logo após o "-p", sendo esse parâmetro o número 
+	de entradas que deseja trazer. "-1", "-15", "-n(quantos quiser)". 
+	Ex sintaxe: 
+	git log -p -1
+	
+	O retorno do log acima será apenas um commit, sendo ele o último que aconteceu.
+	
+	
+	Não é interessante ficar analizando linhas e linhas de log por terminal. Então, é recomendado 
+	utilizar a própria interface gráfica do git. Para utilizar ela, basta digitar o comando: 
+	gitk
+	
+	Após dar Enter, será aberto o visualizador de relatórios de alterações do git.

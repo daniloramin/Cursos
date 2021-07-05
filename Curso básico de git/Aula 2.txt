@@ -1,0 +1,170 @@
+Trabalhando com git para controle de versões.
+	
+	Simulando um ambiente de desenvolvimento local de uma pessoa.
+	Pode ser armazena em qualquer lugar para o desenvolvimento do curso.
+	
+	Terão 3 cenários: 
+	1 - Local 
+	2 - github 
+	3 - rede interna entre vários desenvolvedores
+	
+	Dentro da pasta local, vai começar a gerenciar o controle de versão do git. Para iso, é 
+	necessário a criação de um diretório de trabalho, isso é feito através da criação de um 
+	repositório. É necessário criar um repositório para começar a controlar as versões.
+	
+	No git bash sempre vai trazer de início o seu nome de usuário da máquina que está trabalhando, 
+	arroba(@) o nome da máquina, e a localização como o terceiro campo. 
+	Ex sintaxe que aparecerá: 
+	danil@DESKTOP-OSVD1KF MINGW64 
+	Ex sintaxe que aparecerá:
+	Ricardo@RICARDO-PC /d/wap/www
+	
+	Para configurar o git para iniciar na pasta base dos projetos, procure por git bash na 
+	barra de pesquisa do windows, clique com o botão direito e vá em propriedades. Então, em 
+	"iniciar em" coloque o caminho que deseja ser o caminho base para o terminal do git.
+	
+	Antes de criar um repositório para começar a controlar as versões de um projeto com o git, é 
+	preciso entrar na referida pasta. 
+	Como entrar numa pasta utilizando o terminal? utiliza-se o comando "cd" e o nome da pasta. 
+	Ex sintaxe: 
+	cd aulas    press enter
+	
+	Após isso, o caminho que era "Ricardo@RICARDO-PC /d/wap/www" será o novo caminho 
+	"Ricardo@RICARDO-PC /d/wap/www/aulas".
+	
+	Ex sintaxe: 
+	cd git    press enter
+	
+	Após isso, o caminho que era "Ricardo@RICARDO-PC /d/wap/www/aulas" irá se transformar no caminho 
+	"Ricardo@RICARDO-PC /d/wap/www/aulas/git".
+	
+	Ex sintaxe: 
+	cd local   press enter
+	
+	Após isso, o caminho que era "Ricardo@RICARDO-PC /d/wap/www/aulas/git" irá se transformar no 
+	caminho "Ricardo@RICARDO-PC /d/wap/www/aulas/git/local".
+	
+	
+	Caso queira sair de uma pasta, basta usar o comando: 
+	cd ..
+	
+	Com isso, irá voltar um nível de pastas.
+	
+	
+	Não é preciso entrar pasta por pasta toda vez que quiser ir para um determinado diretório, 
+	basta digitar o endereço completo desse diretório. 
+	Ex sintaxe: 
+	cd aulas/git/local
+	
+	Caso queira apagar a tela, ou seja, limpar os comandos que já foram digitados, utiliza-se o 
+	comando: 
+	clear     press enter
+	
+	
+	Na pasta local, será criado o primeiro repositório. Para a criação de um repositório, 
+	utiliza-se o comando: 
+	git init    press enter
+	
+	Assim, o git criará um repositório na pasta atual, ou seja, no nível que se encontra, na sua 
+	localização atual de acordo com o terminal.
+	
+	Caso for dentro da pasta, verá que foi criado uma pasta chamada ".git" lá dentro, e é dentro 
+	dessa pasta que será armazenada todas as versões do projeto.
+	
+	Ao que parece, a pasta ".git" é oculta pelo gerenciador de arquivos do explorer, fazendo com 
+	que não seja possível vê-la.
+	
+	
+	Após inicializar o repositório, caso queria saber qual status ele se encontra, utiliza-se o 
+	comando: 
+	git status   press enter
+	
+	
+	Depois de criar um repositório, tudo o que precisa fazer é adicionar na pasta os arquivos do 
+	projeto que será desenvolvido.
+	Foi adicionado arquivos na pasta local. 
+	Ex: "readme.txt" "changelog.txt"
+	
+	
+	Suponhamos que tenha adicionado todos os arquivos do projeto, como html, css, js. Digitando 
+	novamente "git status" o git irá dizer que os arquivos não estão sendo "trackeados" por ele, 
+	e que deve adicionar os arquivos usando "git add" para começar a trackear, para começar a 
+	acompanhar esses arquivos através do controle de versão. 
+	Para fazer essa adição, basta digitar "git add" e o nome do arquivo. 
+	Ex sintaxe: 
+	git add readme.txt    press enter
+	
+	Após isso, o arquivo será adicionado ao controle de versão.
+	
+	
+	Caso queira adicionar todos os arquivos de algum formato (Ex: txt), basta colocar o código: 
+	git add *.txt   press enter
+	
+	Caso queira adicionar todos os arquivos que estiverem no diretório, basta utilizar o comando: 
+	git add .   press enter
+	
+	
+	Depois de utilizar o "git add" tudo o que precisa fazer é confirmar as mudanças no projeto, para 
+	que ele saia do Staging Area e vá para o repositório. Isso é feito através do comando "git 
+	commit", que irá salvar as mudanças no projeto.
+	Sintaxe: 
+	git commit
+	
+	Caso utilize apenas o "git commit", logo abaixo será pedido uma mensagem de commit.
+	Para evitar isso, utiliza-se o comando: 
+	git commit -m "mensagem que deseja enviar"
+	
+	Com isso, já é passado a mensagem que desejar utilizar para identificar o commit.
+	
+	
+	Após utilizar o "git commit", caso utilize o "git status" verá que não terá mais nenhuma 
+	alteração pendente de salvamento. 
+	
+	
+	Enquanto estiver adicionando novos arquivos, ou editando arquivos já existentes, estará 
+	trabalhando no working directory(diretório de trabalho). Ao utilizar o "git add", estará 
+	passando esses arquivos para o Staging Area. Ao utilizar o commit, estará mandando esses 
+	arquivos para o repositório.
+	
+	
+	Imagine a situação que um arquivo tenha sido adicionado e que as informações dele sejam só 
+	para você ver, ou seja, ele não diz respeito diretamente ao projeto, podendo até ser, mas 
+	que não vai querer controlar as versões desse arquivo, não quer que ele seja monitorado pelo git.
+	Digitando "git status", o git irá informar que existe esse arquivo pendente. 
+	Para que o git ignore determinados arquivos, como esse em questão, o que precisará fazer é 
+	criar dentro da sua pasta(local ao que parece) um novo arquivo. Esse arquivo não terá nome, 
+	apenas a seu formato que será ".gitignore". Então, basicamente criará um novo arquivo com o nome 
+	"gitignore". 
+	Dentro desse arquivo, será colocado aquilo que deseja ignorar dentro do projeto, ou seja, 
+	dentro de ".gitignore" deve colocar o nome dos arquivos que deseja ignorar.
+	
+	É possível colocar pastas em ".gitignore". Ex sintaxe: temp/
+	
+	Deve ser colocado uma informação por linha, ou seja, um nome de arquivo por linha.
+	
+	
+	Ao usar o "git status", verá que todos os arquivos que estão listados em "gitignore" não irão 
+	mais aparecer no status.
+	
+	
+	É possível commitar os arquivos sem utilizar antes o "git add". Para isso, utiliza-se "-a" 
+	antes do "-m" da mensagem. Esse "-a" vai servir para pular a etapa do add, fazendo isso 
+	automaticamente.
+	Ex sinxte: 
+	git commit -a -m "Código adicionado para o commit"
+	
+	
+
+
+	Foi encontrado nos comentários: 
+	1. Abra o git bash
+	2. certifique-se que no diretorio não tenha nenhum arquivo com o nome .gitignore 
+	(fruto de outras tentativas suas de cria-lo, por exemplo).
+	3. Digite o comando touch .gitignore
+	4. Volte na pasta/diretorio abra o arquivo .gitignore e digite o nome dos arquivos que 
+	deseja ocultar, inclusive o .gitignore.
+	5. Salve as mudanças feitas e pronto. Arquivo criado!
+	
+	Para criar o GITIGNORE no Windows, crie no "Bloco de Notas" que dará certo!  No aplicativo 
+	"Documento de Texto", ele ficará sempre com a extensão [.txt], coisa que não ocorre com o 
+	BLOCO DE NOTAS!

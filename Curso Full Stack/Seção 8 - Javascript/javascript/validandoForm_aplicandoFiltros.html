@@ -1,0 +1,132 @@
+<html ng-app="cadastroPessoa">
+	<head>
+		<meta charset="UTF-8">
+		<title>Praticando</title>
+		<link rel="stylesheet" type="text/css" href="lib/bootstrap/bootstrap.css">
+		<style>
+			.jumbotron {
+				width: 600px;
+				text-align: center;
+				margin-left: auto;
+				margin-right: auto;
+				margin-top: 20px;
+			}
+			
+			.table {
+				margin-top: 20px;
+			}
+			
+			.form-control {
+				margin-bottom: 5px;
+			}
+			
+			.selecionado {
+				background-color: yellow;
+			}
+			
+			.negrito {
+				font-weight: bold;
+			}
+			
+		</style>
+		
+		
+		<script src="lib/angular/angular.js"></script>
+		<script src="lib/angular/angular-messages.js"></script>
+		
+		<script>
+			angular.module("cadastroPessoa", ["ngMessages"])
+			angular.module("cadastroPessoa").controller("cadastroPessoaCtrl", function ($scope) {
+				$scope.mensagem = "Pessoas"
+				$scope.pessoas = [
+					{nome: "Danilo", altura: "1.71", data: new Date(), cor: {nomeCor: "Branca", descendencia: "européia", regiao: "ocidente"}},
+					{nome: "Débora", altura: "1.70", data: new Date(), cor: {nomeCor: "Parda", descendencia: "misto", regiao: "oriente"}},
+					{nome: "Ramin", altura: "1.65", data: new Date(), cor: {nomeCor: "Preta", descendencia: "afro", regiao: "ocidente"}}
+				]
+				
+				$scope.cores = [
+					{nomeCor: "Preta", descendencia: "afro", regiao: "ocidente", cotacao: 8},
+					{nomeCor: "Parda", descendencia: "misto", regiao: "oriente", cotacao: 7},
+					{nomeCor: "Branca", descendencia: "européia", regiao: "ocidente", cotacao: 2},
+					{nomeCor: "Amarela", descendencia: "asiática", regiao: "oriente", cotacao: 5}
+				]
+				
+				
+				$scope.adicionarPessoa = function (pessoa) {
+					$scope.pessoas.push(angular.copy(pessoa))
+					delete $scope.pessoa;
+					$scope.pessoaForm.$setPristine()
+				}
+				
+				$scope.apagarPessoas = function (pessoas) {
+					$scope.pessoas = pessoas.filter(function(pessoa) {
+						if(!pessoa.selecionado) return pessoa
+					})
+				}
+				$scope.isPessoaSelecionada = function (pessoas) {
+					return pessoas.some(function (pessoa) {
+						return pessoa.selecionado
+					})
+				}
+				$scope.ordenarPor = function (campo) {
+					$scope.ordenacao = campo
+					$scope.direcaoOrdenacao = !$scope.direcaoOrdenacao
+				}
+				
+			})
+		</script>
+		
+	</head>
+	<body ng-controller="cadastroPessoaCtrl">
+		<div class="jumbotron">
+			<h3>{{mensagem}}</h3>
+			
+			<input class="form-control" type="text" ng-model="busca" placeholder="O que procura?"></input>
+			<table ng-show="pessoas.length > 0" class="table">
+				<tr>
+					<th></th>
+					<th><a href="" ng-click="ordenarPor('nome')">Nome</a></th>
+					<th><a href="" ng-click="ordenarPor('altura')">Altura</a></th>
+					<th>Cor</th>
+					<th>Data</th>
+				</tr>
+				<tr ng-class="{'selecionado negrito': pessoa.selecionado}" ng-repeat="pessoa in pessoas | filter:busca | orderBy:ordenacao:direcaoOrdenacao">
+					<td><input type="checkbox" ng-model="pessoa.selecionado"></td>
+					<td>{{pessoa.nome}}</td>
+					<td>{{pessoa.altura + 'm'}}</td>
+					<td>{{pessoa.cor.nomeCor | lowercase}}</td>
+					<td>{{pessoa.data | date:"dd/MM/yyyy HH:mm"}}</td>
+				</tr>
+			</table>
+			
+			<form name="pessoaForm">
+				<input class="form-control" type="text" ng-model="pessoa.nome" name="nome" placeholder="Nome" ng-required="true" ng-minlength="4"></input>
+				<input class="form-control" type="text" ng-model="pessoa.altura" name="altura" placeholder="Altura" ng-required="true" ng-pattern="/^\d{1}.\d{2}$/"></input>
+				<select ng-model="pessoa.cor" ng-options="cor.nomeCor + ' (' + (cor.cotacao | currency) + ')' for cor in cores | orderBy:'nomeCor'" class="form-control">
+					<option value="">Selecione sua cor</option>
+				</select>
+			</form>
+			
+			<div ng-messages="pessoaForm.nome.$error">
+				<div ng-message="required" class="alert alert-danger">
+					Por favor, preencha o nome!
+				</div>
+				<div ng-message="minlength" class="alert alert-danger">
+					O campo nome deve ter no mínimo 4 caracteres.
+				</div>
+			</div>
+			
+			<div ng-show="pessoaForm.altura.$error.required && pessoaForm.altura.$dirty" class="alert alert-danger">
+				Por favor, preencha a altura!
+			</div>
+			<div ng-show="pessoaForm.altura.$error.pattern" class="alert alert-danger">
+				O campo altura deve ter o formato em metros. Ex: 1.55
+			</div>
+			<button class="btn btn-primary btn-block" ng-click="adicionarPessoa(pessoa)" ng-disabled="pessoaForm.$invalid">Adicionar Pessoa</button>
+			<button class="btn btn-danger btn-block" ng-click="apagarPessoas(pessoas)" ng-if="isPessoaSelecionada(pessoas)">Apagar Pessoas</button>
+			{{100.26 | number:1}}
+			
+		</div>
+		<!--<div ng-include="'footer.html'"></div>-->
+	</body>
+</html>

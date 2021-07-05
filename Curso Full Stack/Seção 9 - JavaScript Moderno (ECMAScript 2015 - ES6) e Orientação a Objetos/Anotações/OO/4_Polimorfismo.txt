@@ -1,0 +1,74 @@
+-------- Paradigma de Orientação a Objetos --------
+Existem 4 pilares da orientação a objetos:
+A abstração.
+O encapsulamento.
+A herança.
+O polimorfismo.
+
+
+
+---- Polimorfismo ----
+O polimorfismo é a sobrescrita de métodos. Isso acontece quando se trabalha com a herança. O objeto 
+filho irá herdar os atributos e métodos do objeto pai, porém, não necessariamente deverá se comportar 
+igual ao objeto pai. Então, acontece a correção desses comportamentos através da sobrescrita de 
+métodos. 
+Com isso, não existe a necessidade de criar um método no objeto pai especificamente para um filho, 
+basta apenas reescrever o método dentro do objeto filho. 
+Sintaxe: 
+class Animal {
+    constructor (cor, tamanho, peso) {
+	this.cor = cor;
+	this.tamanho = tamanho;
+	this.peso = peso;
+    }
+    dormir () {
+	console.log('Dormir');
+    }
+}
+
+class Passaro extends Animal { 
+    constructor (cor, tamanho, peso, bico) {
+	super(cor, tamanho, peso);   
+	this.bico = bico;
+    }
+    voar () {
+	console.log('Voar');
+    }
+}
+
+class Papagaio extends Passaro {
+    constructor (cor, tamanho, peso, bico, sabeFalar) {  
+	super(cor, tamanho, peso, bico);
+	this.sabeFalar = sabeFalar;  
+    }
+    falar () {
+	console.log('Falar');
+    }
+}
+
+class Avestruz extends Passaro {
+    constructor () {
+	super('Preto e branco', 250, 15000, 'Grande'); // cor, tamanho, peso, bico
+    }
+    enterrarCabeça () {
+	console.log('Enterrar a cabeça');
+    }
+    voar () { // Como o avestruz não consegue voar, o método será sobrescrevido para ele.
+	console.log('Não consegue voar.');
+    }
+}
+
+let avestruz = new Avestruz('Verde', 25, 400, 'Médio', true); 
+avestruz.voar();
+
+
+Como o método voar não se encaixava com o objeto Avestruz, ele foi sobrescrevido para se encaixar com 
+o objeto. O método sobrescrito pode dar um retorno false ou mudar sua funcionalidade para algo que se 
+encaixe naquele objeto. 
+Para sobrescrever um método de uma classe pai basta reescrever ele dentro de uma classe filha.
+
+
+
+
+
+

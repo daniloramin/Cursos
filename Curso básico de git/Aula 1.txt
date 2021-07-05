@@ -1,0 +1,20 @@
+rbtech git.
+O git é um sistema de controler de versão distribuído.
+	
+	Work Directory - é onde você vai estar trabalhando. Tudo que estiver fazendo, que estiver 
+	codificando, vai se encaixar como Work Directory.
+	
+	A partir do momento que der um git add, os arquivos que estavam sendo editados passam por 
+	uma espécie de sala de espera, que é a Staging Area.
+	
+	Staging Area - é onde os arquivos que foram modificados ficam antes de serem mandados de 
+	volta para o repositório.
+	
+	Quando der um git commit, esses arquivos vão ir para o repositório final, que é a base onde 
+	foram pegos os arquivos para se trabalhar, o Git Directory. 
+	
+	Ao abrir o git bash, tem que ser feito duas configurações básicas, as configurações iniciais. 
+	Sintaxe: 
+	git config --global user.name "Danilo Ramin"   press enter
+	
+	gi config --global user.email "daniloramin@hotmail.com"

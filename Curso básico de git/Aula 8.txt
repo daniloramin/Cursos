@@ -1,0 +1,31 @@
+Como colaborar com projetos open source criados através do github. 
+	
+	Para que consiga primeiro colaborar com um projeto, é necessário entender o conseito de Fork e 
+	Pull Request. 
+	O fork é o procedimento que você faz para clonar aquele repositório para o qual se quer 
+	colaborar dentro da sua conta do github. Após fazer todas as alterações normais nos repositórios 
+	que estão na sua conta, você faz um pull request, ou seja, você envia tudo que fez de alterações 
+	para que o altor do projeto avalie e decida se vai colocar isso junto com o projeto original ou 
+	não.
+	
+	Encontre um repositório que deseja colaborar, clique no botão "Fork" e então será feito uma 
+	cópia dele nos repositórios de sua conta.
+	
+	Após isso, basta fazer o processo de alterações.
+	
+	Para mandar o projeto com suas alterações devolta para o autor original, é preciso fazer um 
+	pull request do fork.
+	Enquanto estiver na tela do seu repositório, basta clicar no botão "Pull Requests", depois em 
+	"New pull request", preencher os dados pedidos, clicar no botão "create pull request", escolher 
+	um título e fazer um comentário. Depois, clique em "Send pull request".
+	
+	Após isso, as alterações foi enviada para o autor. Agora, basta ele decidir se vai ou não 
+	utilizar essas alterações no projeto dele.
+	
+	
+	Para excluir um repositório do github, é necessário selecionar o repositório que deseja deletar. 
+	Depois, clique em "settings" e ao final clique em "Delete this repository". Após isso, basta 
+	confirmar o nome do repositório que quer deletar.
+	Após confirmar, clique no botão "I understand the consequences, delete this repository".
+	
+	Após isso, o repositório será removido da conta do github.

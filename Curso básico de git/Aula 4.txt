@@ -1,0 +1,56 @@
+Situações em que precisa desfazer ou reverter alguma situação dentro do repositório, utilizando git 
+como controle de versão.
+	
+	Imagine a situação em que é feito um commit antes da hora, querendo então, editar esse commit 
+	mais recente. Para fazer a junção de uma nova edição no arquivo com o commit que havia feito, 
+	basta adicionar o arquivo manualmente, utilizando "git add ." e depois utilizar o comando: 
+	git commit --amend -m "Mensagem do commit (edicao)" 
+	
+	O edição no final é para mostrar que está fazendo uma edição no último commit e não um novo 
+	commit no lugar daquele outro.
+	
+	
+	Outra situação que pode acontecer é, estar acostumado a fazer o add de todos os arquivos 
+	sempre e sem querer dar um "git add" em um arquivo que não era para ser adicionado, era 
+	algo apenas para testes ou coisa do tipo.
+	Como fazer para remover esse arquivo da Staging Area? Basta utilizar o comando: 
+	git reset HEAD novo.php
+	
+	Arquivo "novo.php" utilizado como exemplo.
+	
+	
+	Agora, imagine pegar um projeto para trabalhar e tem um arquivo de funções (ou aleatório) 
+	e resolve fazer umas alterações só para ver o que vai acontecer com o sistema depois dessas 
+	alterações. Vão sendo alterado e adicionado coisas, chegando em um ponto em que é esquecido 
+	quais foram as alterações, não lembrando mais o código original.
+	Como reverter o arquivo para o formato original? Para descartar as mudanças feitas no arquivo, 
+	basta utilizar o comando: 
+	git checkout -- novo.php
+	
+	Arquivo "novo.php" utilizado como exemplo.
+	
+	Com isso, serão descartadas as mudanças feitas no diretório de trabalho.
+	
+	
+	Imagine fazer várias mudanças como, criar arquivos, deletar arquivos, renomear arquivos, 
+	apagar conteúdo de arquivos, etc. 
+	Ao utilizar "git add ." o git irá dizer que existem arquivos que foram removidos do diretório 
+	de trabalho e que existem alguns conflitos para serem resolvidos.
+	
+	Caso der um "git status", irá aparecer os arquivos que não existem mais e que precisam ser 
+	removidos.
+	
+	Quando se quer remover um arquivo do repositório, é preciso utilizar o comando "git rm" e 
+	o nome do arquivo.
+	Ex sintaxe: 
+	git rm novo.php
+	
+	Ao consultar o status, será possível ver que está tudo ok, sem nenhum arquivo para ser removido. 
+	Então, será possível dar commit nas alterações do repositório.
+	Ex sintaxe: 
+	git commit -m "Base do sistema criada"
+	
+	
+	
+	Novo comando: git log --pretty=oneline | serve para mostrar somente o código de cada commit e 
+	a mensagem desse commit.

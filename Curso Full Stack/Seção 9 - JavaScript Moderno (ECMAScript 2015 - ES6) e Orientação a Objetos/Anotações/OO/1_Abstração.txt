@@ -1,0 +1,103 @@
+-------- Paradigma de Orientação a Objetos --------
+Existem 4 pilares da orientação a objetos:
+A abstração.
+O encapsulamento.
+A herança.
+O polimorfismo.
+
+
+---- Abstração ----
+Entidade: um carro.
+Identidade: x = new Carro();
+Características(atributos): marca, modelo, cor, quantidade de portas.
+Ações(métodos): ligar, acelerar, freiar, desligar.
+
+A ideia da abstração é compreender as coisas do mundo real e trazer elas para dentro dos sistemas.
+
+
+Para definir um modelo do objeto, é utilizado o operador class. O objeto é uma instância do modelo. 
+É uma boa prática colocar os nomes de classes iniciando em letras maiúsculas.
+Sintaxe:
+class ContaBancaria {
+    
+}
+
+Em javascript, é necessário construir os atributos do obejto. Para fazer isso é utilizado o método 
+construtor. O modelo do objeto precisa passar por uma instância para acontecer a construção do objeto. 
+O construtor é um método com as instruções para a construção do objeto com base no modelo. 
+No processo de construção, é utilizado o operador this para setar os atributos dentro do método 
+construtor. O operador this tem a inteligência para fazer com que um atributo seja conectado ao contexto 
+do objeto, fazendo com que se tenha uma variável encapsulada dentro do objeto.
+Sintaxe: 
+class ContaBancaria {
+    constructor() {
+        this.agencia = 1075;
+        this.numeroConta = 8351125;
+	this.saldo = 50;
+	this.limite = 450;
+    }
+}
+O método constructor pode receber parâmetros. Esses parâmetros geralmente têm o mesmo nome que o 
+atributo que irão ser armazenados, porém não entram em conflito e isso se dá por causa do operador this.
+Sintaxe: 
+class ContaBancaria {
+    constructor(agencia, numeroConta, saldo, limite) {
+        this.agencia = agencia;
+        this.numeroConta = numeroConta;
+	this.saldo = saldo;
+	this.limite = limite;
+    }
+}
+
+
+Após definir os atributos, serão definidas as ações. As ações são definidas com a mesmas sintaxe de 
+funções, porém, quando declaradas dentro de um modelo são conhecidas como métodos. Não é necessário 
+utilizar a palavra reservada "function" na criação de métodos.
+Sintaxe: 
+class ContaBancaria {
+    constructor(agencia, numeroConta, saldo, limite) {
+        this.agencia = agencia;
+        this.numeroConta = numeroConta;
+	this.saldo = saldo;
+	this.limite = limite;
+    }
+    depositar (valorDeposito) {
+        this.saldo += valorDeposito;
+    }
+    sacar (valorSaque) {
+        this.saldo -= valorSaque;
+    }
+    consultarSaldo () {
+	return this.saldo;
+    }
+}
+
+
+Até agora foi feito apenas um modelo, mas agora será criado a Entidade, e para isso ser feito é 
+necessário dar a ela uma Identidade. Para isso, é necessário criar uma variável que fará referência a 
+um objeto que será instanciado a partir da classe.
+Sintaxe: 
+let x = new ContaBancaria();
+
+O operador new é quem indica que o modelo deverá ser transformado em um objeto.
+
+A partir da instancia do objeto, é possível recuperar seus atributos e métodos. O "." permite acessar 
+atributos e métodos do objeto, bastando informar a identidade do objeto, ponto e após o ponto o 
+atributo ou objeto que deseja alterar.
+Sintaxe: 
+let x = new ContaBancaria();
+console.log(x.consultarSaldo());
+x.depositar(450);
+console.log(x.consultarSaldo());
+x.sacar(200);
+console.log(x.consultarSaldo());
+
+
+
+
+
+
+
+
+
+

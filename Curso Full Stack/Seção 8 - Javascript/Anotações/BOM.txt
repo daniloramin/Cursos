@@ -1,0 +1,99 @@
+Serve para se comunicar com recursos do browser através do javascript. Ex: acessar o histórico de 
+navegação, forçar o redirecionamento de url, salvar/recuperar cookies.
+
+-------- Window --------
+É a janela do browser onde todo o conteúdo é renderizado. Dentro de window, existe o objeto 
+document (window.document) que fornece acesso aos elementos html da página.
+Exemplo com método open() e método close(). 
+O método open() serve para abrir uma nova janela, popUp. 
+Sintaxe: 
+window.open('link da janela', 'nome da janela', 'especificações sep por virgula(width=200, height=100));
+Há um terceiro parâmetro também, consultar a documentação.
+
+O método close() fecha uma janela aberta pelo método open(). Para isso é necessário armazenar essa 
+abertura em uma variável. 
+Sintaxe: 
+janela = window.open('http://www.google.com', 'nova_janela', 'width=200, height=100');
+janela.close();
+
+Existem vários outros métodos de window. Consultar a documentação para ver todos.
+
+window.innerHeight() - altura do browser.
+
+window.innerWidth() - largura do browser.
+
+
+
+-------- Screen --------
+Fornece acesso a atributos relativos a tela do browser. Ex: saber altura e largura da parte interna do 
+navegador aonde os elementos html são renderizados.
+Métodos availHeight e availWidth - servem para pegar a altura e largura relativas do browser excluindo 
+a barra de ferramentas. Esses valores são valores potenciais, ou seja, até onde o browser pode ser 
+expandido, e não o tamanho atual dele.
+Sintaxe: 
+var altura = window.screen.availHeight;
+var largura = window.screen.availWidth;
+document.write('A altura é ' + altura + ' e a largura é ' + largura);
+
+
+
+-------- Location --------
+Fornece acesso a atributos e métodos da url atual. Com o objeto location, é possível forçar um 
+redirecionamento, por exemplo, ou até atualizar a página, através do método reload.
+
+Com a propriedade href é possível setar qual a url que será retornada para o navegador.
+Sintaxe:
+window.location.href="http://www.google.com";
+
+Uma maneira de passar parâmetros entre páginas é utilizando interrogação(?) após o link, passando os 
+parâmetros após a interrogação. Ex:
+window.location.href="http://www.google.com?" + valores;
+Com isso, o conteúdo da variável "valores" será passado da sua página atual para 
+a página "http://www.google.com".
+
+Para capturar os parâmetros da url, é utilizado a propriedade search. Ela pega tudo a direita do ponto 
+de interrogação, inclusive o próprio ponto de interrogração. Sintaxe: 
+var valores = window.location.search; 
+Para remover o ponto de interrogação, basta utilizar um replace e substituir ele por ""(vazio).
+
+
+
+Há outras propriedades e métodos em cima de Location. Consultar a documentação.
+
+
+-------- Timing --------
+Exemplos em cima dos métodos setTimeout() e setInterval(), que servem para executar uma ação de forma 
+programática, com base na definição de um intervalo de tempo.
+
+setTimeout() - permite que uma ação seja executada uma única vez após o tempo informado para a execução 
+daquela ação.
+Ex:
+setTimeout(function () {document.write('teste')}, 2000); Será escrito teste depois de 2 segundos.
+
+
+setInterval() - permite executar uma ação de forma constante num intervalo de tempo informado.
+Ex:
+setInterval(function () {document.write('teste <br>')}, 2000); Irá executar essa função a cada 2 
+segundos.
+
+Existe os métodos de clear, para interromper a execução dessas funções. Para utilizar o método clear, 
+deve armazenar a chamada do método set para então usar dentro de clear.
+Sintaxe com exemplo em setInterval: 
+var i = 5;
+var x = setInterval(function () {
+    document.write(i);
+    i--;
+    
+    if (i === 0) {
+        //window.location.reload(); vai recarregar a página.
+        clearInterval(x); vai terminar essa função quando i for igual a zero.
+    }
+}, 1000);
+
+
+
+
+
+
+
+

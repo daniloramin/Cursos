@@ -1,0 +1,56 @@
+Esses eventos são aplicados dentro das tags html como propriedades. Ex: onclick=""
+Os eventos podem ser combinados, podendo utilizar diferentes eventos no mesmo elemento html.
+Nem todos os eventos estão disponíveis para todos os elementos html, podendo acontecer de um evento 
+não funcionar em um elemento html específico.
+
+-------- Mouse --------
+onclick=""    Dispara um evento quando o elemento for clicado.
+
+ondblclick=""    Dispara um evento quando o elemento for clicado duas vezes consecutivas.
+
+onmouseup=""    Dispara um evento quando o click em cima do elemento é liberado.
+
+onmouseover=""    Dispara um evento quando o mouse entra na área do elemento dentro do browser.
+
+onmouseout=""    Dispara um evento quando o mouse sai da área do elemento dentro do browser.
+
+
+-------- Teclado --------
+onkeydown=""    Dispara um evento quando uma tecla é pressionada. Exemplo dado: foi utilizado um input, 
+e ao pressionar a telca A o evento foi disparado antes do caractere ser exibído dentro do input.
+Muito interessante usar para a aplicação de máscaras como a de CPF.
+
+onkeyup="" Dispara um evento quando uma tecla é pressionada. Porém, conforme o exemplo do onkeydown, a 
+função só foi disparada depois que o caractere foi exibido dentro do input.
+
+onkeypress="" Acontece entre os eventos onkeydown e onkeyup. Similar ao onkeydown, disparando o evento 
+antes da finalização da liberação da tecla. Porém, o onkeypress só funciona com teclas que representam 
+caracteres, ou seja, caso pressionar Ctrl por exemplo, não irá acontecer nada.
+
+
+-------- Janela(Frame) --------
+onresize=""    Dispara um evento quando a tela é redmensionada(quando aumenta ou diminui o tamanho da 
+tela). É necessário associar esse evento a um elemento html que sofra a influência da alteração do 
+tamanho da janela, sendo esse elemento o body, já que nele é onde está todo o conteúdo exibido no 
+browser.
+
+onscroll=""    Pode ser associado a qualquer elemento que possua um scroll(uma barra de rolagem).
+Dispara um evento quando o scroll do mouse é utilizado dentro do elemento.
+
+
+-------- Formulários --------
+onfocus=""    Dispara um evento quando um elemento recebe o foco(clica em cima do input, por exemplo).
+
+onblur=""    Dispara um evento quando um elemento perede o foco(quando clica fora do elemento com foco 
+ou aperta Tab, por exemplo).
+
+onchange=""    Dispara um evento quando um elemento sofre uma modificação de estado. Muito utilizado em 
+conjunto com o elemento select. 
+Ex: foi criado um select com várias options, e então foi atribuído o onchange para o select. Toda vez 
+que mudar de uma option para outra option, irá disparar o evento.
+
+
+
+
+
+

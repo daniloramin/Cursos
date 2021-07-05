@@ -1,0 +1,46 @@
+console.table([{id: 1, nome: 'danilo'}, {id: 2, nome: 'débora'}]);
+
+console.table({id: 1, nome: 'danilo'}, {id: 2, nome: 'débora'}); 
+// mostra a key como index e o value como valores.
+
+
+---- Forma de exibir modal por JQuery ----
+$('#idDoModal').modal('show');
+$('#idDoModal').modal('hide'); //talvez?
+
+
+
+---- Chamar uma função quando carregar o body de uma página ----
+<body onload="carregarDados()">
+</body>
+
+
+
+---- Inserir dados em uma tabela ----
+É utilizado o método .insertRow() de um elemento tbody, por exemplo, dentro de uma estrutura de 
+repretição em cima dos dados a serem inseridos. Para atuar em cada um dos elementos que estarão sendo 
+criados dinamicamente, é associado a linha recém criada a uma variável. Após isso, será necessário 
+inserir valores(<td>) nessas linhas criadas(<tr>), utilizando o método .insertCell(), passando como 
+parâmetro para esse método um valor que será respectivo a coluna que deverá ser criada.
+Exemplo: 
+let dados = [{dado: 'a'}, {dado: 'b'}, {dado: 'c'}];
+let listaDados = document.getElementById('idTbody');
+dados.forEach(function (d) {
+    let linha = listaDados.insertRow();
+    lina.insertCell(0).innerHTML = d.dado; 
+    lina.insertCell(1).innerHTML = exemp.dia + '/' + exemp.mes + '/' + exemp.ano ; // exemplo
+    lina.insertCell(2).innerHTML = `Idade de ${exemp.idade} ano e peso de ${exemp.peso}Kg.`; // exemplo
+});
+
+
+
+---- Limpar valores dentro de uma tag ----
+let nome = document.getElementById('nome');
+nome.innerHTML = '';
+
+
+
+
+
+
+

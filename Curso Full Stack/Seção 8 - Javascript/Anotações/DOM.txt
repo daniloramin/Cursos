@@ -1,0 +1,81 @@
+API que permite o acesso via JavaScript aos atributos dos elementos (value, style, type, class...) 
+html da página.
+O DOM pode ser dito como a árvore de elementos da página.
+
+
+-------- Selecionando os Elementos da Página --------
+document.getElementById('nome do id')    Seleciona o elemento com o nome do ID. Reparar que a sintaxe 
+do comando é escrita com "Element" enquanto todos os outros apresentados serão "Elements" com S no 
+final.
+
+document.getElementsByTagName('nome da tag')    Seleciona os elementos pelo seu nome. 
+Ex: para selecionar as tags de input usaria gtElementsByTagName('input').
+
+document.getElementsByClassName('nome da classe')    Seleciona os elementos html pelo atributo class.
+
+document.getElementsByName('valor atribuído a name')    Seleciona os elementos html pelo atributo name.
+
+
+-------- Manipulação de elementos --------
+Para recuperar o valor contido dentro de um elemento é utilizado o comando:
+document.getElementById().value
+Foi utilizado getElementById como exemplo. O .value é o responsável por pegar o valor do elemento.
+
+Para setar valores em um elemento, é atribuído um valor ao comando document.getElementById().value. Ex: 
+document.getElementById('nome').value = 'danilo ramin'
+
+Para setar valores dentro de tags é usado innerHTML. Muito útil para colocar textos dentro de tags como 
+um span. Sintaxe: 
+document.getElementById('segundos').innerHTML = 'Faltam ' + tempo + ' segundos.';
+
+
+É possível recuperar o valor por dois jeitos: 
+var nome = document.getElementById('nome');
+console.log(nome.value);
+
+var nome = document.getElementById('nome').value;
+console.log(nome);
+
+
+-------- Manipulação de Estilos dos Elementos --------
+É a partir do atributo style que serão acessados os atributos css do elemento. Ex: 
+document.getElementById('tela').style.background = #FF0000
+getElementById usado como exemplo. No exemplo, está sendo alterado a cor do background do elemento com 
+o id de nome tela.
+
+OBS: No css, atributos com múltiplas palavras são separados por hífen (background-color, font-size). 
+Porém, ao atribuir em document.getElementById().style é utilizado camelcase (separa por maiúsculas). 
+Ex: document.getElementById('tela').style.backgroundColor = #FF0000
+Em css, seria background-color.
+
+
+-------- Manipulação de Classes dos Elementos --------
+Para mudar a classe de um elemento, será utilizado o atributo className. Ex: 
+document.getElementById('quadrado').className = 'estilo1'
+getElementById usado como exemplo. No exemplo, está sendo alterado a classe do elemento com o 
+id de nome "quadrado". 
+
+-------- Criação e configuração de elementos --------
+Ao pegar o elemento criado e colocar .atributo, é como se estivesse escrevendo o atributo dentro da 
+tag do elemento.
+<img id="teste" onclick="funcao()">
+
+var x = document.createElement('img');
+x.id = 'teste';
+x.onclick = 'funcao()';
+
+document.createElement('img'); Cria elementos na tela. No caso está sendo criado uma imagem.
+mosquito.src = 'imagens/mosquito.png'; Configuração do atributo src do elemento img.
+document.body.appendChild(mosquito); Está incluindo o elemento criado dentro de body, sendo passado 
+como um elemento filho de body.
+
+mosquito.style.position = 'absolute'; deixa o elemento em absolute para configurar a posição no browser
+mosquito.style.left = 130 + 'px'; configura a distância da largura
+
+mosquito.id = 'mosquito'; Atribui um ID ao elemento mosquito.
+
+document.getElementById('mosquito').remove(); Remove um elemento pelo ID.
+
+
+
+

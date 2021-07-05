@@ -1,0 +1,90 @@
+-------- Introdução --------
+O operador em si é constituído por 3 pontos(...), porém o que define se ele é Rest ou Spread é o 
+contexto onde ele está sendo usado.
+
+É chamado de Spread quando ele está sendo utilizado para espalhar estrutras de dados.
+É chamado de Rest quando ele está sendo utilizado para juntar estrutras de dados. 
+
+
+---- Spread ----
+É utilizado para espalhar estruturas de dados. 
+Exemplo: 
+let tituloArtigo = 'Como utilizar o operador rest/spread';
+console.log(tituloArtigo);
+console.log(...tituloArtigo);  // utilizado o operador(...) para espalhar a string, deixando cada 
+				  caracter separado. Cada caracter da string foi impresso individual.
+
+console.log([...tituloArtigo]);  // recupera o spread da string armazenando cada caracter em um índice 
+				    do array.
+
+
+É possível também espalhar arrays dentro de arrays.
+Exemplo: 
+let listaCursos1 = ['Node e mongo', 'ES6 typescript angular4'];
+let listaCursos2 = ['Android/IOS', 'GNU/Linux'];
+let listaCursosCompleto = ['Web', 'Android', ...listaCursos1, ...listaCursos2];
+
+É espalhado nos índices de listaCursosCompleto os valores de listaCurso1 e listaCurso2. 
+
+
+É possível utilizar o operador Spread no contexto de objetos. 
+Exemplo: 
+let pessoa = {nome: 'danilo', idade: 20'};
+let clone = {endereço: 12345, ...pessoa}; 
+// retorno igual a {endereço: 12345, nome: 'danilo', idade: 20'}
+
+
+Basicamente a função do operador Spread é espalhar os dados de uma estrutura para dentro de outras 
+estruturas.
+
+
+
+---- Rest ----
+É utilizado para juntar estruturas de dados. 
+O operador Rest é muito utilizado em conjunto com funções.
+
+Imagine uma função que recebe um número indefinido de parâmetros. Sua função é somar cada valor 
+passado por parâmetro e depois retornar o valor da soma. Porém, como seria feito para recuperar esses 
+parâmetros dentro da função e atuar sobre cada um deles de forma dinâmica? Seria utilizado o operador 
+Rest. 
+Exemplo:
+// é o mesmo que [3, 8, 5, 7]
+function somar (...param) { //recebe todos os parâmetros de uma vez só e junta em uma estrutura de array.
+    let resultado = 0;
+    
+    param.forEach(v => resultado += v);
+
+    return resultado;
+}
+console.log(soma(3, 8, 5, 7));
+
+Foi criado uma estrutura dinâmica, pois será possível enviar diferentes quantidades de parâmetros, que 
+a função irá funcionar.
+
+
+É possível também a passagem de parâmetros definidos, e na sequência recuperar parâmetros indefinidos 
+utilizando o operador Rest.  
+Exemplo: 
+function multiplicacao (m, ...p) { 
+    let resultado = 0;
+
+    p.forEach(v => resultado += m * p);
+
+    return resultado;
+}
+console.log(multiplicacao(5, 7, 12, 3, 49)); // O primeiro parâmetro é o "m" e o resto é unido em "p".
+
+
+O operador Rest/Spread possui a sintaxe que são 3 pontos(...) e dependendo do contexto ele pode atuar 
+para espalhar (Spread) ou juntar (Rest).
+
+
+ 
+
+
+
+
+
+
+
+

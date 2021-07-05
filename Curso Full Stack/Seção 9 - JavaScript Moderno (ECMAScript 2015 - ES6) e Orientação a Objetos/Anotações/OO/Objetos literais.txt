@@ -1,0 +1,106 @@
+-------- Objetos literais / estáticos --------
+É um objeto que é descrito dentro do código. Ele é declarado dentro de abre e fecha chaves. Seus 
+atributos e métodos são dispostos em pares, com o nome(conhecido também como chave ou atributo) e o 
+valor(atributo ou método), sendo cada um dos pares separados por vírgula.
+Sintaxe: 
+let produto = {
+    descricao: 'notebook', 
+    preco: 2700.00
+    verDescricao: function () {
+        console.log(`$(this.descricao) por apenas $(preco)`);
+    }
+};
+Repare que o this se refere a descricao e preco no contexto do objeto. Pode haver mudança de contexo, 
+ex: caso exista uma função dentro da função varDescricao, e essa função tente receber os parâmetros 
+do objeto sendo this.descicao e this.preco. Isso daria erro, pois agora o contexto seria dentro da 
+função, fazendo com que fosse procurado descricao e preco dentro da função varDescricao.
+
+
+Para utilizar o objeto, não precisa haver instância, pois ele já está descrito. Basta apenas usar 
+sua referência e ponto logo em seguida para acessar seus atributos e métodos.
+Sintaxe: 
+produto.verDescricao();
+
+
+
+-------- Melhorias de notação --------
+A versão ES6 deixa o par chave/valor mais enxuto comparado com a versão ES5.
+Sintaxe ES5: 
+let nome = 'danilo';
+let idade = 20;
+let sexo = 'masculino';
+let profissao = 'programador';
+let objeto = {
+    nome: nome,
+    idade: idade,
+    sexo: sexo,
+    profissao: profissao,
+    exibirResumo: function () {
+	console.log(`O ${this.nome}, ${this.sexo}, tem ${this.idade} e é ${this.profissao}`);
+    }
+};
+console.log(objeto);
+objeto.exibirResumo();
+
+Repare que existe a sintaxe do this para dizer o contexto do objeto.
+
+Sintaxe ES6:
+let nome = 'danilo';
+let idade = 20;
+let sexo = 'masculino';
+let profissao = 'programador';
+let objeto = {
+    nome,  // nome do par será igual ao nome da variável, valor do par será igual ao valor da variável.
+    idade,
+    sexo,
+    profissao,
+    exibirResumo () {
+	console.log(`O ${this.nome}, ${this.sexo}, tem ${this.idade} e é ${this.profissao}`);
+    } // combina par nome e valor passando uma function. Foi removido o dois pontos e "function".
+};
+console.log(objeto);
+objeto.exibirResumo();
+
+
+
+-------- Modificando valores --------
+É possível modificar os valores de um objeto literal.
+Sintaxe: 
+let pessoa = {
+    nome: 'danilo',
+    idade: 20
+};
+pessoa.nome = 'debora';
+pessoa.idade = 21;
+
+
+
+-------- Criação dinâmica de pares nome/valor --------
+É possível incluir novos pares nome/valor dentro de um objeto já definido. Para isso basta apenas 
+acessar a referência do objeto e logo após um ponto, sendo declarado um novo atributo ou função depois 
+do ponto.
+Sintaxe: 
+let pessoa = {
+    nome: 'danilo',
+    idade: 20
+};
+pessoa.sexo = 'masculino';
+pessoa.dizerOi = () => console.log('oi');
+pessoa.dizerOi();
+
+
+
+-------- Objetos únicos --------
+Todo objeto literal é um objeto único e mesmo que armazene esse mesmo objeto em diferentes variáveis, 
+todas irão apontar para o mesmo objeto, ou seja, tendo um objeto x armazenado em y, o conteúdo de y 
+não será uma copia de x, mas sim uma cópia da referência para o objeto literal, podendo acessar o 
+objeto x tanto por x ou por y.
+
+
+
+
+
+
+
+
+

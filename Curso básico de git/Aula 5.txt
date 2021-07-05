@@ -1,0 +1,138 @@
+Tags e branchs no controle de versão.
+	
+	Tag - ponto de atalho para um determinado status do sistema. Geralmente os desenvolvedores 
+	utilizam as tags para criar marcações nas versões diferentes de um sistema. 
+	Ex - versão 1.0, versão 1.1, versão 1.2...
+	Utilizando uma tag, tem-se um atalho, uma forma facilitada de trocar o status, reverter o 
+	status do sistema, poder visualizar os arquivos, alterar os arquivos, fazer consultas de forma 
+	rápida no código fonte para ver como ele era em cada versão.
+	
+	Para listar as tags que estão no sistema se utiliza o comando "git tag". Ex: 
+	git tag
+	
+	De início não irá aparecer nenhuma tag pois não foi criada nenhuma. 
+	Para criar uma tag, utiliza-se o código: 
+	git tag -a nomeDaTag -m "mensagemParaTag"
+	git tag -a v1.0 -m "Versão 1.0"
+	
+	O "-a" serve para criar uma tag anotada. Uma tag simples, sem anotação, não guarda informações 
+	como o usuário que criou, a data e hora da criação, assim por diante... Já uma tag anotada 
+	vai armazenar essas informações.
+	
+	A tag é sempre criada no seu commit atual, no local onde se está trabalhando agora com o 
+	controle de versão. Mas, é possível também, criar uma tag com uma versão antiga do sistema, 
+	com um commit antigo do sistema.
+	
+	Como faz isso? Primeiro, veja todos os commits que se tem no sistema com o comando: 
+	git log --pretty=oneline
+	
+	É visto a mensagem do commit e a chave dele.
+	Depois disso, escolha o commit que deseja criar a tag. 
+	Então, para criar uma tag para o commit escolhido, utiliza-se o comando: 
+	git tag -a nomeDaTag colocarChave -m "Mensagem da versão"
+	
+	Basicamente, esse comando vai colocar o nome da tag em "nomeDaTag" e colocar a chave completa 
+	ou parte dela em "colocarChave". Ex: 
+	git tag -a v0.0 as9d68fas4d9a60ga -m "Versão 0.0"
+	
+	Para conseguir copiar com o mouse a chave, basta ir no canto superior esquerdo do terminal, 
+	selecionar "editar" e depois "marcar". 
+	Para copiar, bastar dar "Enter". Para colar, basta dar um "Ctrl + Ins".
+	
+	
+	Caso queira saber mais detalhes de uma tag, basta utilizar o comando "git show" e o nome da tag. 
+	Ex sintaxe: 
+	git show v0.0
+	
+	
+	Como utilizar a tag? 
+	Suponhamos que queira visualizar os arquivos de um commit. Basta utilizar o comando 
+	"git checkout" e o nome da tag atribuída ao commit.
+	Ex sintaxe: 
+	git checkout v0.0
+	
+	Ao pressionar Enter, todos os arquivos serão trocados para os arquivos que existiam naquela 
+	versão que foi escolhida.
+	
+	Caso troque para "git checkout v1.0", todos os arquivos serão trocados para os que existiam 
+	nessa versão.
+	
+	
+	Foi voltado o sistema para o status original, com o branch master. Código: 
+	git checkout master
+	
+	
+	Para deletar uma tag, basta utilizar o comando "git tag -d" e o nome da tag que deseja deletar. 
+	Ex sintaxe: 
+	git tag -d v0.0
+	
+	
+	Na hora de fazer por exemplo, ou criar uma nova versão, não é interessante utilizar as tags 
+	para controlar isso ou para criar ambientes de desenvolvimento diferentes por exemplo.
+	Nesse caso, é melhor utilizar os branchs, que são as ramificações dentro do controle de versão. 
+	
+	O branch permite com que trabalhe com várias ramificações diferentes. Pode ser feito um 
+	commit em uma ramificação que esse commit não vai alterar outras ramificações.
+	
+	O branch padrão quando se cria um repositório no git é o "master". O branch pode ser utilizado 
+	para criar vários ambientes de desenvolvimento, como um de testes ou um de segurança.
+	
+	
+	Criando um ambiente de testes para o sistema. Para criar um novo branch(nova ramificação), 
+	utiliza-se o código "git branch" e logo afrente o nome do branch que deseja criar. 
+	Ex sintaxe: 
+	git branch teste
+	
+	Para fazer a transição dos arquivos para o branch de testes, utiliza-se "git checkout" e o 
+	nome do branch. 
+	Ex sintaxe: 
+	git checkout teste
+	
+	Após precionar enter, irá aparecer uma mensagem dizendo que foi mudado para o branch de teste.
+	
+	
+	Caso queira evitar o processo desses dois comando, de criar e depois ter que trocar para o 
+	branch designado, basta usar o comando "git checkout -b" e o nome do branch. Com isso, já irá 
+	criar e já vai fazer a troca para o branch designado. 
+	Ex sintaxe: 
+	git checkout -b teste
+	
+	
+	Após dar um checkout no branch, basta ir trabalhar normalmente no ambiente de testes.
+	
+	
+	Caso esteja trabalhando no ambiente de teste e um cliente liga dizendo que precisa de ajuda no 
+	sistema, basta commitar as alterações no ambiente que estava trabalhando e depois trocar para 
+	o branch do sistema do cliente. 
+	Ex sintaxe da troca: 
+	git checkout master
+	
+	No branch master está sendo utilizado o sistema do cliente.
+	
+	Após terminar de trabalhar no sistema do cliente, basta voltar para o branch de teste para 
+	continuar a trabalhar de onde parou.
+	
+	
+	Após terminar de trabalhar no sistema de testes e quiser implementar as alterações criadas nele 
+	ao sistema do cliente, é preciso estar no branch que deseja aplicar as alterações, ou seja, 
+	o destino das alterações. Estando nesse branch destino, basta utilizar o comando "git merge" e 
+	o nome do branch que deseja trazer as alterações para o branch destino. 
+	Ex sintaxe: 
+	git merge teste 
+	
+	Com isso, foi trago as alterações do branch teste para o branch escolhido para o destino, no 
+	caso, o ambiente que estava sendo trabalhado para o cliente era o branch master.
+	
+	
+	Para listar todos os branches existentes no repositório, basta digitar o comando "git branch".
+	
+	Caso não queira mais utilizar o branch teste e queira excluir ele, basta utilizar o comando 
+	"git branch -d" e o nome do branch. 
+	Ex sintaxe: 
+	git branch -d teste
+	
+	Após isso, o branch será deletado. 
+	
+	
+	Quando se trabalha com branches, principalmente em projetos maiores ou onde várias pessoas 
+	trabalham no mesmo projeto, nem sempre as coisas dão certo como no exemplo.

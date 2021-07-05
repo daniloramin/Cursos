@@ -1,0 +1,280 @@
+Inclusão de scripts: 
+<script src="nomeDoScript.js"></script>
+Incluindo o script antes, é possível ter acesso as funções dele por uma tag <script></script> e também 
+executar funções vindo dele, pois seu dados são carregados antes.
+
+Inclusão de arquivos:
+<link rel="stylesheet" href="estilo.css" type="text/css">
+
+
+-------- Comentários --------
+comentário em linha = //comentário
+comentário em bloco = /* várias linhas uma abaixo da outra */
+
+
+-------- Variáveis --------
+As variáveis em js tem 3 valore comuns: string, number e bolean.
+Tem case sensitive: variavel, Variavel e VARIAVEL sao diferentes.
+
+Sobre valores null e undefined: 
+Null representa a ausência intencional de um valor. Declarar uma variável null, quer dizer que deseja 
+que ela tenha o valor null naquele momento.
+Undefined não representa nada, ele pode ser atribuído também só declarando a variável sem passar o 
+undefined para ela. Geralmente relacionado com acessar recursos indisponíveis, como por exemplo 
+um elemento no navegador que não existe.
+Qualquer uma dessas variáveis podem ser trabalhadas, ou seja, passar valores para elas depois de 
+declaradas, mas lembrando que ainda sim esses valores são diferentes.
+
+
+-------- Concatenação --------
+Utiliza o operador + para a concatenação de strigs. 
+Para fazer com que uma soma  seja executada sem ser quebrada pela concatenação, 
+basta colocar ela dentro de parenteses. Assim, ela será executada e depois concatenada a string.
+Porém isso só funciona quando já se tem os números no tipo number. Caso eles ainda sejam strings, será 
+necessário fazer a conversão. Isso só se encaixa para a soma, pois o operador + serve tanto para 
+soma quanto para concatenação.
+
+
+-------- Operadores --------
+E: &&
+OU: ||
+NÃO: !
+TERNÁRIO: <condicao> ? <verdadeiro> : <falso>
+ARITMÉTICOS: + - * / % ++ --
+
+
+-------- Arrays --------
+Os índices(posições) do array podem ser strings também e não apenas números.
+É possível criar uma variável do tipo array instanciando um objeto do tipo array. Ex: 
+var lista = new Array(); pode omitir o operador "new".
+lista[0] = 'produto';
+
+
+Também é possível criar apenas abrindo e fechando parênteses dentro dela. Ex:
+var lista = [];
+lista[0] = 'produto';
+
+
+É possível passar os valores para os índices do array na própria declaração dele. Ex:
+var lista = Array('produto1', 'produto2', 'produto3');
+var lista = ['produto1', 'produto2', 'produto3'];
+
+
+O length do array só funciona se o índice começar em 0, ser sequencial, ser numérico e não ter 
+intervalos. Ex: lista[0], lista[1], lista[2], lista[3], lista[4]
+
+
+Os índices de arrays multidimensionais(arrays que apontam para arrays) são acessados pelo respectivo 
+número de colchetes. Ex: 
+var lista = Array();
+var lista['produtos'] = Array();
+lista['produtos'][0] = 'produto1';
+
+
+Inclusão e remoção dentro de arrays:
+Para incluir um elemento no final de um array é utilizado o método push. Ex:
+var lista = Array('elemento1', 'elemento2');
+lista.push('elemento3');
+
+
+Para incluir um elemento no início de um array é utilizado o método unshift. Ex:
+var lista = Array('elemento1', 'elemento2');
+lista.unshift('elemento3');
+
+
+Para excluir um elemento no final de um array é utilizado o método pop. Ex:
+var lista = Array('elemento1', 'elemento2');
+lista.pop();
+
+
+Para excluir um elemento no início de um array é utilizado o método shift. Ex:
+var lista = Array('elemento1', 'elemento2');
+lista.shift();
+
+
+Para fazer pesquisas dentro de um array é utilizado o método indexOf. Ex: 
+var lista = Arra('uva', 'morango', 'banana', 'maçã');
+lista.indexOf('morango'); 
+O retorno será o valor 1, pois é o número do índice onde está 'morango'. A pesquisa é Case Sensitive.
+
+Para fazer a ordenação de elementos de um array é utilizado o método sorth. Ex: 
+var lista = Array('maçã', 'uva', 'banana', 'morango');
+lista.sorth(); 
+O retorno será: 'banana', 'maçã', 'morango', 'uva'
+O método ordenou os elementos do array em ordem alfabética. O mesmo não acontece caso os lementos sejam 
+números. Para fazer com que ele funcione para números, é necessário passar uma função para o método: 
+function ordenaNumeros(a, b) {
+    return a - b;
+}
+var lista = Array(6, 9, 45, 23, 8);
+lista.sorth(ordenaNumeros); 
+Essa função é padrão, ou seja, será sempre a mesma a ser passada.
+
+
+Para saber o tamanho do array, basta fazer array.length
+
+
+-------- Estruturas de repetição --------
+WHILE: 
+Sua sintaxe é: 
+while (condição de repetição) {
+    Pode haver o comando break para fazer uma parada no while.
+    É possível também utilizar o comando continue(volta para a verificação contida no while).
+}
+
+
+DO WHILE: 
+Sua sintaxe é: 
+do {
+    break e continue podem ser usados da mesma forma que no while.
+} while(condição de repetição)
+
+
+FOR: 
+Sua sintaxe é:
+for (variável; condição; controle;) {
+    break e continue podem ser usados da mesma forma que no while.
+}
+
+
+FOR IN:
+Um exemplo aplicando sua sintaxe:
+var lista = ['pessoa1', 'pessoa2', 'pessoa3', 'pessoa4'];
+for (var x in lista) {
+    
+}
+A variável ao lado esquerdo no operador in vai receber a cada iteração o valor de cada índice do 
+array(o mesmo acontece para objetos).
+Retorno = 0, 1, 2, 3
+Para recuperar o valor contido em cada um desses índices, basta fazer:
+for (var x in lista) {
+    console.log(lista[x]);
+}
+
+O for in permite percorrer um array com chaves customizadas, evitando problemas e erros.
+
+O for in também pode ser utilizado para percorrer objetos, e caso quiser criar um método para percorrer 
+elementos de um objeto dentro de sua própria classe, basta utilizar o this para referenciar o objeto. 
+Sintaxe: 
+for(let x in this) {
+    console.log(x);  // retorna o índice(array) ou atributo(objeto). Para retornar o valor faça this[x].
+};
+
+
+FOREACH: 
+No contexto do javascript ele funciona em cima de array, é uma função pertencente ao objeto array. 
+O forEach aguarda como parâmetro uma função de callback, sendo ela uma função que vai indicar para o 
+forEach como que ele tem que atuar em cada um dos índices do array. Essa função recebe três 
+parâmetros, valor índice e array, nessa respectiva ordem, podendo ser qualquer nome.
+Sua sintaxe é:
+elemento.forEach(function(a, b, c) {
+    
+})
+Ex:
+var lista = ['pessoa1', 'pessoa2', 'pessoa3'];
+lista.forEach(function(valor, indice, array) {
+    document.write('Índice: ' + indice);
+    document.write('Valor: ' + valor);
+    document.write(array);
+    
+    if (valor == 'Pessoa2') {
+        array[indice] = 'Outro nome';
+    }
+    
+});
+
+O forEach segue a lógica de que é possível omitir parâmetros em funções javascript. Ex:
+elemento.forEach(function(a) {
+    
+})
+
+elemento.forEach(function(a, b) {
+    
+})
+
+O forEach só atua em cima de índices de valores numéricos, partindo de 0, não precisando ser sequencial, 
+apenas numérico e iniciando em 0. Se caso tivesse um array com índices mistos, o forEach só atuaria em 
+cima dos índices numéricos acima de -1, ou seja, a partir de 0.
+
+
+
+-------- Funções - Sobre --------
+Existe uma palavra reservada chamada "arguments". Ela é uma instrução que existe para todas as funções 
+javascript. Ela tem um retorno muito parecido com um array, contendo a relação de parâmetros 
+passados para a função. Arguments é um objeto que representa uma variável local dentro da função. 
+Ex:
+function teste () {
+    console.log(arguments);
+}
+Trabalhando com argumentos variáveis: 
+function soma () {
+    var resultado = 0
+    for (var i in arguments) {
+        resultado += arguments[i];
+    }
+    return resultado;
+}
+console.log(soma(2, 5, -9, 43, 18, -50));
+
+
+
+-------- Tratamento de erros --------
+Muito utilizada para tratar ou contornar erros, possibilitanto que a aplicação continue em vez de ter 
+uma parada.
+Sintaxe: 
+try {
+    //colcoar aqui toda a codificação que puder acionar um erro
+}
+
+Só declarar o try não resolve o problema. É necessário capturar o erro ou finalizar a tentativa. 
+É possível capturar o erro e finalizar a tentativa logo após. Mas lembrando que é necessário da 
+um fim para o try.
+Implementando o finally:
+try {
+    //colcoar aqui toda a codificação que puder acionar um erro.
+
+} finally {
+    //após tentar algo, irá finalizar essa coisa de alguma forma.
+}
+Dessa forma, irá executar o que estiver dentro do finally mesmo que a aplicação quebrar dentro de try. 
+Porém, a aplicação ainda não está reativa a ponto de se recuperar de um erro. Isso acontece por que 
+não foi implementado o catch, ou seja, não está capturando o erro e tratando ele.
+O catch tem uma função muito importante no tratamento de erros, recebendo o erro e sendo possível 
+explorar esse erro e tomar uma ação, fazendo com que o fluxo da aplicação não quebre.
+O catch é implementado logo após o try e ele captura o erro no parâmetro, e esse parâmetro pode 
+receber qualquer nome, desde que obedeça as regras de nomes de variáveis. 
+Sintaxe: 
+try {
+    //colcoar aqui toda a codificação que puder acionar um erro.
+
+} catch (e) {
+    //tratamento do erro | o que fazer caso aconteça um erro. 
+    //Esse código vai fazer caso aconteça um erro e depois irá continuar a aplicação, em vez de parar.
+
+} finally {
+    //após tentar algo, irá finalizar essa coisa de alguma forma.
+}
+Existe também o throw. Ele serve para lançar exceções dentro das aplicações, podendo criar uma nova 
+instância do objeto error e forçar a exibição desse objeto, fazendo com que a aplicação seja 
+interrompida. Ele pode ser declarado em qualquer lugar do código, sendo lançado no mesmo local onde 
+foi declarado.
+Ex:
+// pode ser declarado no inicio, meio, final... qualquer lugar do código, não sendo preso ao try/catch
+try {
+    //colcoar aqui toda a codificação que puder acionar um erro.
+
+} catch (e) {
+    //tratamento do erro | o que fazer caso aconteça um erro. 
+    //Esse código vai fazer caso aconteça um erro e depois irá continuar a aplicação, em vez de parar.
+    throw new Error('Houve um erro');
+
+} finally {
+    //após tentar algo, irá finalizar essa coisa de alguma forma.
+}
+Lembrando que o throw irá forçar a parada da aplicação.
+
+
+
+
+
+

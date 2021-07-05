@@ -1,0 +1,167 @@
+-------- Paradigma de Orientação a Objetos --------
+Existem 4 pilares da orientação a objetos:
+A abstração.
+O encapsulamento.
+A herança.
+O polimorfismo.
+
+
+---- Herança ----
+Torna o código mais reutilizável e menos redundante, e por ser menos redundante torna a manuteção do 
+código bem mais fácil.
+
+Com a herança, os atributos e métodos de uma classe podem ser herdados por outras classes. Essas 
+classes herdam tudo da classe pai, até mesmo suas heranças.
+
+A super classe contém métodos e atributos que são herdados por sub classes. Podem ser chamadas também 
+por classe pai e classes filhas(ou classes especializadas), respectivamente.
+
+Para indicar que uma classe herda de outra, é utilizado o operador extends.
+Sintaxe: 
+class Animal {
+    constructor () {
+	this.cor = '';
+	this.tamanho = null;
+    }
+    dormir () {
+	console.log('Dormir');
+    }
+}
+class Cachorro extends Animal { // A classe Cachorro herda da classe Animal
+    constructor () {
+	super();   // É utilizado o método super dentro do constructor, sempre antes do operador this.
+	this.orelhas = 'Grandes e caídas';
+    }
+    correr () {
+	console.log('Correr');
+    }
+    rosnar () {
+	console.log('Rosnar');
+    }
+}
+class Passaro extends Animal { // A classe Passaro herda da classe Animal
+    constructor () {
+	super();   //É utilizado o método super dentro do constructor, sempre antes do operador this.
+	this.bico = 'Curto';
+    }
+    voar () {
+	console.log('Voar');
+    }
+}
+
+let cachorro = new Cachorro();
+let passaro = new Passaro();
+
+cachorro.dormir(); // Método herdado da classe Animal.
+passaro.dormir(); // Método herdado da classe Animal.
+
+
+Exemplo manutenção e de herança passada por Animal e Passaro: 
+class Animal {
+    constructor () {
+	this.cor = '';
+	this.tamanho = null;
+	this.peso = null;  // Atributo que será herdado por todas as classes que herdarem de Animal.
+    }
+    dormir () {
+	console.log('Dormir');
+    }
+}
+class Cachorro extends Animal { // A classe Cachorro herda da classe Animal
+    constructor () {
+	super();   // É utilizado o método super dentro do constructor, sempre antes do operador this.
+	this.orelhas = 'Grandes e caídas';
+    }
+    correr () {
+	console.log('Correr');
+    }
+    rosnar () {
+	console.log('Rosnar');
+    }
+}
+class Passaro extends Animal { // A classe Passaro herda da classe Animal
+    constructor () {
+	super();   //É utilizado o método super dentro do constructor, sempre antes do operador this.
+	this.bico = 'Curto';
+    }
+    voar () {
+	console.log('Voar');
+    }
+}
+
+class Papagaio extends Passaro {
+    constructor () {
+	super();
+	this.sabeFalar = true;
+    }
+    falar () {
+	console.log('Falar');
+    }
+}
+
+let papagaio = new Papagaio();
+papagaio.falar();
+papagaio.dormir();  // Método herdado da classe Animal.
+papagaio.voar();  // Método herdado da classe Passaro.
+
+
+
+-- Operador Super --
+O operador super fornece acesso para o método construtor da classe pai. O operador super é sempre 
+incluído dentro do constructor de classes filhas. Se a classe herda de outra classe, ela precisa 
+utilizar o operador super, ou seja, se a classe usa o extends, ela precisa utilizar o operador super 
+dentro de seu constructor.
+Um detalhe importante é que o operador super tem que ficar antes de qualquer operador this, ou seja, 
+antes da criação de qualquer atributo do objeto em questão.
+
+É possível passar ou não parâmetros através do super para o construtor da classe pai. Isso serve para 
+passar valores para os atributos contidos na classe pai.
+Sintaxe: 
+class Animal {
+    constructor (cor, tamanho, peso) {
+	this.cor = cor;
+	this.tamanho = tamanho;
+	this.peso = peso;
+    }
+    dormir () {
+	console.log('Dormir');
+    }
+}
+
+class Passaro extends Animal { 
+    constructor (cor, tamanho, peso, bico) {
+	super(cor, tamanho, peso);   
+	this.bico = bico;
+    }
+    voar () {
+	console.log('Voar');
+    }
+}
+
+class Papagaio extends Passaro {
+    // Parâmetro passado pelo constructor que será colocado em um atributo.
+    constructor (cor, tamanho, peso, bico, sabeFalar) {  
+	super(cor, tamanho, peso, bico);
+	this.sabeFalar = sabeFalar;  // Valor passado por parâmetro dado ao atributo.
+    }
+    falar () {
+	console.log('Falar');
+    }
+}
+
+let papagaio = new Papagaio(true);  // Passando true como parâmetro para indicar que o papagaio fala.
+console.log(papagaio);
+
+
+Repare que os parâmetros passado na criação do objeto foram passados para a classe Papagaio, 
+utilizados dentro de seu construtor, foram passados os parâmetros necessários para o construtor de 
+Passaro através do super dentro do construtor de Papagaio e foram passados os parâmetros 
+necessários para o construtor de Animal através do super dentro do construtor de Passaro. 
+
+
+
+
+
+
+
+
